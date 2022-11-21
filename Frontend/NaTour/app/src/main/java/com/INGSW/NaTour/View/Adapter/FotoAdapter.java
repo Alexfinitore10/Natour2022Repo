@@ -1,6 +1,8 @@
 package com.INGSW.NaTour.View.Adapter;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.INGSW.NaTour.Model.FotoPercorso;
 import com.INGSW.NaTour.R;
 
+import java.net.SocketException;
 import java.util.ArrayList;
 
 public class FotoAdapter extends RecyclerView.Adapter<FotoAdapter.FotoHolder> {
@@ -37,8 +40,14 @@ public class FotoAdapter extends RecyclerView.Adapter<FotoAdapter.FotoHolder> {
         }
 
         void setDetails(FotoPercorso fotoPercorso){
-            Log.d(TAG,"STO PER SCARICARE LA FOTO" + fotoPercorso.getUrl());
-            Glide.with(context).load(fotoPercorso.getUrl()).into(imageRecyclerView);
+            Log.d(TAG,"Glide sta per scaricare questa foto: " + fotoPercorso.getUrl());
+            new Handler().post(() -> {
+                try{
+                    Glide.with(context).load(fotoPercorso.getUrl()).into(imageRecyclerView);
+                }catch (Exception e){
+                    Log.e(TAG, "Glide Socket Exception" + e.toString());
+                }
+            });
         }
 
     }

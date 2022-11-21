@@ -223,10 +223,13 @@ public class SentieroPresenter {
         switch (diff){
             case "Facile":
                 difficolta=1;
+                break;
             case "Medio":
                 difficolta=2;
+                break;
             case "Difficile":
                 difficolta=3;
+                break;
         }
 
 
