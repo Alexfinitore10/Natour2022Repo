@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/CardView"
+    style="@style/Widget.Material3.CardView.Elevated"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/mtrl_card_spacing"
+    android:clickable="true"
+    android:elevation="20dp"
+    android:focusable="true"
+    android:minHeight="@dimen/cat_card_rich_media_demo_min_height">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/cat_card_double_spacing"
+            android:paddingBottom="@dimen/cat_card_single_spacing">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/propic"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="@dimen/cat_card_single_spacing"
+                android:layout_marginRight="@dimen/cat_card_single_spacing"
+                android:contentDescription="@string/cat_card_rich_media_logo_view_description"
+                android:scaleType="fitXY"
+                app:srcCompat="@android:mipmap/sym_def_app_icon" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/cat_card_single_spacing"
+                android:layout_marginLeft="@dimen/cat_card_single_spacing"
+                android:layout_weight="1.0"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/NameCard"
+                    android:maxLines="1"
+                    style="?attr/textAppearanceHeadline6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cat_card_rich_media_view_title" />
+
+                <TextView
+                    android:id="@+id/SubnameCard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/cat_card_single_spacing"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@string/cat_card_rich_media_view_secondary_line_text" />
+
+            </LinearLayout>
+
+            <!--androidx.appcompat.widget.AppCompatImageView
+          android:id="@+id/appCompatImageView"
+          android:layout_width="50dp"
+          android:layout_height="50dp"
+          android:layout_marginEnd="@dimen/cat_card_single_spacing"
+          android:layout_marginRight="@dimen/cat_card_single_spacing"
+          android:contentDescription="@string/cat_card_rich_media_logo_view_description"
+          android:scaleType="centerInside"
+          app:srcCompat="@android:drawable/btn_star" /-->
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="194dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/cat_card_rich_media_image_view_description"
+            android:scaleType="fitXY"
+            app:backgroundTint="@color/material_on_surface_emphasis_medium"
+            app:backgroundTintMode="add" />
+        <!--app:srcCompat="@drawable/immagine_2021_11_13_124911" /-->
+
+
+        <TextView
+            android:id="@+id/DescriptionCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/cat_card_double_spacing"
+            android:maxLines="2"
+            android:text="@string/cat_card_selectable_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:dividerPadding="16dp"
+            android:orientation="horizontal"
+            android:padding="4dp"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:id="@+id/difficultyFragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/ic_difficile"
+                android:drawablePadding="2dp"
+                android:paddingStart="8dp"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/timeFragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/ic_time"
+                android:drawablePadding="2dp"
+                android:paddingStart="8dp"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/disableFragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_disabile"
+                android:drawablePadding="2dp"
+                android:paddingStart="8dp"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+</com.google.android.material.card.MaterialCardView>
+
+

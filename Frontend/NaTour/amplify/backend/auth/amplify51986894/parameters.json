@@ -1,0 +1,27 @@
+{
+  "authSelections": "identityPoolAndUserPool",
+  "resourceName": "amplify51986894",
+  "serviceType": "imported",
+  "region": "us-east-2",
+  "aliasAttributes": [
+    "email"
+  ],
+  "authProvidersUserPool": [
+    "Facebook",
+    "Google"
+  ],
+  "requiredAttributes": [
+    "email"
+  ],
+  "passwordPolicyMinLength": 8,
+  "passwordPolicyCharacters": [
+    "Requires Lowercase",
+    "Requires Uppercase",
+    "Requires Numbers"
+  ],
+  "mfaConfiguration": "OFF",
+  "autoVerifiedAttributes": [
+    "email"
+  ],
+  "mfaTypes": []
+}

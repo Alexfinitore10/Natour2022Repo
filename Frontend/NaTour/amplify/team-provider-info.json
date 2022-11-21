@@ -1,0 +1,34 @@
+{
+  "astudio": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplify-astudio-131415-authRole",
+      "UnauthRoleArn": "arn:aws:iam::628448228605:role/amplify-amplify-astudio-131415-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::628448228605:role/amplify-amplify-astudio-131415-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-amplify-astudio-131415-deployment",
+      "UnauthRoleName": "amplify-amplify-astudio-131415-unauthRole",
+      "StackName": "amplify-amplify-astudio-131415",
+      "StackId": "arn:aws:cloudformation:us-east-2:628448228605:stack/amplify-amplify-astudio-131415/a7325590-88d8-11ec-8fe9-0a7c82a51ada",
+      "AmplifyAppId": "dlew1ig6z9jr5"
+    },
+    "categories": {
+      "auth": {
+        "amplify51986894": {
+          "userPoolId": "us-east-2_KU7crFtWr",
+          "userPoolName": "UtentiNaTour",
+          "webClientId": "2rq57kjcpvbnloi5evj4i7fn8q",
+          "nativeClientId": "2rq57kjcpvbnloi5evj4i7fn8q",
+          "identityPoolId": "us-east-2:9358220c-7ff2-41c4-b0c6-2dbc92ac6c69",
+          "identityPoolName": "IdentityPool",
+          "allowUnauthenticatedIdentities": true,
+          "authRoleArn": "arn:aws:iam::628448228605:role/Cognito_IdentityPoolAuth_Role",
+          "authRoleName": "Cognito_IdentityPoolAuth_Role",
+          "unauthRoleArn": "arn:aws:iam::628448228605:role/Cognito_IdentityPoolUnauth_Role",
+          "unauthRoleName": "Cognito_IdentityPoolUnauth_Role",
+          "googleAndroid": "1044415938783-rekrgpug0te8662ue3qm0i4d5gdihn5i.apps.googleusercontent.com",
+          "facebookAppId": "1114011279409700"
+        }
+      }
+    }
+  }
+}
