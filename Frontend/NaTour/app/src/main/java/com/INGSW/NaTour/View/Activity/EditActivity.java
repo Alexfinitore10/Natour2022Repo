@@ -4,12 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.res.Resources;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import com.INGSW.NaTour.Extra.Constants;
@@ -26,11 +22,6 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
-
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -67,7 +58,7 @@ public class EditActivity extends AppCompatActivity {
         editName = findViewById(R.id.editTextPercorso);
         editDescription = findViewById(R.id.editTextDescizione);
         chipGroupDif = findViewById(R.id.chipGroupDif);
-        chipGroupDis = findViewById(R.id.chipGroupDis);
+        chipGroupDis = findViewById(R.id.chipGroupDisDialog);
         fabCancel = findViewById(R.id.buttonCancel);
         editTimePicker = findViewById(R.id.editTextTime);
         searchableSpinner = findViewById(R.id.searchSpinner1);
@@ -116,9 +107,6 @@ public class EditActivity extends AppCompatActivity {
                 editTimePicker.setText(hour + ":" + minute);
             });
         });
-
-
-
 
         fabNext.setText("Modifica");
         fabNext.setOnClickListener(v -> {
@@ -171,7 +159,6 @@ public class EditActivity extends AppCompatActivity {
 
 
     private void getData(){
-
         String nome = String.valueOf(editName.getText());
         String descrizione = String.valueOf(editDescription.getText());
 
@@ -235,14 +222,6 @@ public class EditActivity extends AppCompatActivity {
                         .show());
     }
 
-    public void showSuccess(String error) {
-        runOnUiThread(() ->
-                new SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE)
-                        .setTitleText("Errore")
-                        .setContentText(error)
-                        .show());
-    }
-
     private int convertDiff(String dif){
         switch(dif){
             case "Facile":
@@ -261,13 +240,6 @@ public class EditActivity extends AppCompatActivity {
     }
 
     public void success(Sentiero sentiero) {
-        /*
-        runOnUiThread(() ->
-                new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
-                        .setTitleText("Errore")
-                        .setContentText("Aggiornato con successo!")
-                        .show());*/
-
         Intent i = new Intent();
         i.putExtra("result", sentiero);
         setResult(80, i);

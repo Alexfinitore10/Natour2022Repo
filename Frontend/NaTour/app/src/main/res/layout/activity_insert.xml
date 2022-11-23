@@ -156,7 +156,7 @@
             android:textStyle="bold" />
 
         <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chipGroupDis"
+            android:id="@+id/chipGroupDisDialog"
             app:selectionRequired="true"
             app:singleSelection="true"
             android:layout_width="match_parent"

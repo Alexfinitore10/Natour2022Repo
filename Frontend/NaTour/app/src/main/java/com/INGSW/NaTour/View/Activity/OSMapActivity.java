@@ -5,6 +5,7 @@ import androidx.core.location.LocationManagerCompat;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.view.View;
 import com.INGSW.NaTour.Extra.TransferDataIntent;
 import com.INGSW.NaTour.Model.MapPoint;
 import com.INGSW.NaTour.R;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.osmdroid.config.Configuration;
@@ -46,6 +48,7 @@ public class OSMapActivity extends AppCompatActivity {
     private MyLocationNewOverlay locationOverlay;
     private FloatingActionButton btnCurrentPosition;
     private FloatingActionButton btnConfirm;
+    private FloatingActionButton btnDelete;
     private Polyline line = null;
     private Boolean insertMode = true;
 
@@ -70,11 +73,18 @@ public class OSMapActivity extends AppCompatActivity {
         btnCurrentPosition = findViewById(R.id.fabCurrent);
         btnConfirm = findViewById(R.id.fabConfirm);
         btnConfirm.setVisibility(View.INVISIBLE);
+        btnDelete = findViewById(R.id.fabDelete);
+        btnDelete.setVisibility(View.INVISIBLE);
 
         map = findViewById(R.id.mapview);
         map.setTileSource(TileSourceFactory.MAPNIK);
         map.setClickable(true);
         map.getController().setZoom(18.0);
+        map.setMinZoomLevel(4.0);
+        map.setHorizontalMapRepetitionEnabled(false);
+        map.setVerticalMapRepetitionEnabled(false);
+        map.setScrollableAreaLimitLatitude(MapView.getTileSystem().getMaxLatitude(), MapView.getTileSystem().getMinLatitude(), 0);
+        map.setScrollableAreaLimitLongitude(MapView.getTileSystem().getMinLongitude(), MapView.getTileSystem().getMaxLongitude(), 0);
 
         map.getZoomController().setVisibility(CustomZoomButtonsController.Visibility.ALWAYS);
         map.setMultiTouchControls(true);
@@ -95,6 +105,7 @@ public class OSMapActivity extends AppCompatActivity {
 
         if(insertMode){
             btnConfirm.setVisibility(View.VISIBLE);
+            btnDelete.setVisibility(View.VISIBLE);
 
             MapEventsReceiver mReceive = getListener();
             MapEventsOverlay evOverlay = new MapEventsOverlay(mReceive);
@@ -116,7 +127,27 @@ public class OSMapActivity extends AppCompatActivity {
 
         });
 
+        btnDelete.setOnClickListener(view -> {
+            resetLine();
+        });
+
     }
+
+    private void resetLine() {
+        new MaterialAlertDialogBuilder(this)
+                .setTitle("Vuoi davvero tutti i punti che hai tracciato?")
+                .setPositiveButton("Si", (dialogInterface, i) -> {
+                    if(line!=null)
+                        new Handler().post(() -> {
+                            line.getActualPoints().clear();
+                            map.getOverlays().clear();
+                            MapEventsReceiver mReceive = getListener();
+                            MapEventsOverlay evOverlay = new MapEventsOverlay(mReceive);
+                            map.getOverlays().add(evOverlay);
+                        });
+                }).show();
+    }
+
 
     public void showError(String error) {
         runOnUiThread(() ->
@@ -128,6 +159,7 @@ public class OSMapActivity extends AppCompatActivity {
 
     private MapEventsReceiver getListener(){
         line = new Polyline(map);
+        line.setInfoWindow(null);
         return new MapEventsReceiver() {
             @Override
             public boolean singleTapConfirmedHelper(GeoPoint p) {
@@ -202,6 +234,7 @@ public class OSMapActivity extends AppCompatActivity {
     public void tracciatoToPolyline(List<MapPoint> tracciato){
         Log.d(TAG, "Conversione in corso");
         line = new Polyline(map);
+        line.setInfoWindow(null);
         for (MapPoint p: tracciato){
             GeoPoint g = new GeoPoint(p.getLatitude(), p.getLongitude());
 
@@ -214,6 +247,7 @@ public class OSMapActivity extends AppCompatActivity {
         }
         Log.d(TAG, "Polyline: " + line.getActualPoints().toString());
         map.getOverlays().add(line);
+        map.getController().setCenter(line.getActualPoints().get(0));
     }
 
 }

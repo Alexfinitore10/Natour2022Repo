@@ -43,7 +43,7 @@ public class EditPresenter {
         if(! (sentiero.isDisabile() == sentieroDTO.isDisabile()))
             return equal = false;
 
-        return equal;
+        return true;
     }
 
 

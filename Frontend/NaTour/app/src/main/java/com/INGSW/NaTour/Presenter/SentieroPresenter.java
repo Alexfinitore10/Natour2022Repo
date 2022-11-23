@@ -135,11 +135,11 @@ public class SentieroPresenter {
             if (cut != -1) {
                 nameFoto = nameFoto.substring(cut + 1);
             }
-            Log.d("NomeFoto", nameFoto);
+            Log.d(TAG, "nome foto " + nameFoto);
 
             String imageUpload = enc + nameFoto;
 
-            Log.d("Fotooooooooooooooooooooooooooooooooooooooo", imageUpload + exampleInputStream.toString());
+            Log.d(TAG, "immaggine: " + imageUpload + exampleInputStream.toString());
 
 
             RxStorageBinding.RxProgressAwareSingleOperation<StorageUploadInputStreamResult> rxUploadOperation =
@@ -149,13 +149,13 @@ public class SentieroPresenter {
                     .observeResult()
                     .subscribe(
                             result ->{
-                                Log.i("MyAmplifyApp", "Successfully uploaded: " + result.getKey());
+                                Log.i(TAG, "Successfully uploaded: " + result.getKey());
                                 insertPhoto(result.getKey());
                                 pDialog.setTitleText("Loading Complete");
                                 pDialog.changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
                             },
                             error ->{
-                                Log.e("MyAmplifyApp", "Upload failed", error);
+                                Log.e(TAG, "Upload failed", error);
                                 pDialog.setTitleText("Error");
                                 pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
                             }
@@ -189,7 +189,6 @@ public class SentieroPresenter {
         });
     }
 
-
     public Sentiero getSentiero() {
         return sentiero;
     }
@@ -201,7 +200,6 @@ public class SentieroPresenter {
     public void setSentieroFotoFragment(SentieroFotoFragment sentieroFotoFragment) {
         this.sentieroFotoFragment = sentieroFotoFragment;
     }
-
 
     public void setSentieroInformazioniFragment(SentieroInformazioniFragment sentieroInformazioniFragment) {
         this.sentieroInformazioniFragment = sentieroInformazioniFragment;
@@ -231,7 +229,6 @@ public class SentieroPresenter {
                 difficolta=3;
                 break;
         }
-
 
         Log.d(TAG, "createOpinion: "+ durata + "-" + difficolta);
         OpinioneDTO opinioneDTO = new OpinioneDTO(difficolta,durata, sentiero.getId(), Constants.utente.getId());

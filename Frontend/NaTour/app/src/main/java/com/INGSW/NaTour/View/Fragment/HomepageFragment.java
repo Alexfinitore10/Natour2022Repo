@@ -183,6 +183,7 @@ public class HomepageFragment extends Fragment {
         });
 
         ChipGroup chipGroupDif = layout.findViewById(R.id.chipGroupDifDialog);
+        ChipGroup chipGroupDis = layout.findViewById(R.id.chipGroupDisDialog);
 
 
         searchDialog.setView(layout);
@@ -193,6 +194,9 @@ public class HomepageFragment extends Fragment {
             Chip chipDif = layout.findViewById(chipGroupDif.getCheckedChipId());
             if(chipDif!=null)
                 diff = String.valueOf(chipDif.getText());
+            Chip chipDis = layout.findViewById(chipGroupDis.getCheckedChipId());
+            if(chipDis!=null)
+                dis = String.valueOf(chipDis.getText());
             homepagePresenter.search(hour,minute,diff,dis,loc);
             resetValue();
         });
@@ -218,6 +222,13 @@ public class HomepageFragment extends Fragment {
         diff=null;
         dis=null;
         loc=null;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume e update sentieri");
+        homepagePresenter.getItinerari();
     }
 
 }

@@ -13,6 +13,7 @@ import com.INGSW.NaTour.View.Activity.LogInActivity;
 import com.INGSW.NaTour.View.Activity.SignUpActivity;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -34,13 +35,13 @@ public class SignUpPresenter {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         result -> {
-                            Log.i("AuthQuickStart", "Result: " + result.toString());
+                            Log.i(TAG, "Result: " + result.toString());
                             insertUser(username,email);
                             signUpActivity.ConfirmCodeDialog(username);
                         },
                         error -> {
                             if (error.getCause().toString().contains("UsernameExistsException")) {
-                                signUpActivity.runOnUiThread(() -> new SweetAlertDialog(signUpActivity, SweetAlertDialog.ERROR_TYPE).setTitleText("Errore").setContentText("Username già esiste!").show());
+                                signUpActivity.showError("Username già esistente");
                             } else {
                                 Log.e(TAG, error.toString());
                             }
@@ -54,10 +55,10 @@ public class SignUpPresenter {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         result -> {
-                            Log.i("AuthQuickstart", result.isSignUpComplete() ? "Confirm signUp succeeded" : "Confirm sign up not complete");
+                            Log.i(TAG, result.isSignUpComplete() ? "Confirm signUp succeeded" : "Confirm sign up not complete");
                             signUpActivity.startActivity(new Intent(signUpActivity, LogInActivity.class));
                         },
-                        error -> Log.e("AuthQuickstart", error.toString())
+                        error -> Log.e(TAG, error.toString())
                 );
     }
 
@@ -90,6 +91,44 @@ public class SignUpPresenter {
         });
 
     }
+
+    public boolean isEmailCorrectAndPasswordCorrentandEqual(String email, String pass1, String pass2){
+        String regexEmailValid = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+        String regexStrongPasswordValid = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$";
+
+        Pattern patternEmail = Pattern.compile(regexEmailValid);
+        Pattern patternPassword = Pattern.compile(regexStrongPasswordValid);
+
+        if (email == null || pass1==null || pass2==null){
+            signUpActivity.showError("Riempi tutti i campi");
+            return false;
+        }
+
+        if(email.isEmpty() || pass1.isEmpty() || pass2.isEmpty()){
+            signUpActivity.showError("Riempi tutti i campi");
+            return false;
+        }
+
+        if(!patternEmail.matcher(email).matches()){
+            signUpActivity.showError("L'email non è stata inserita correttamente");
+            return false;
+        }
+
+        if(!patternPassword.matcher(pass1).matches() || !patternPassword.matcher(pass2).matches()){
+            signUpActivity.showError("La password deve avere almeno 8 caratteri, 1 maiuscola, 1 carattere speciale e 1 numero");
+            return false;
+        }
+
+        if(!pass1.equals(pass2)){
+            signUpActivity.showError("Le password non coincidono");
+            return false;
+        }
+
+        return true;
+
+    }
+
+
 
 
 }

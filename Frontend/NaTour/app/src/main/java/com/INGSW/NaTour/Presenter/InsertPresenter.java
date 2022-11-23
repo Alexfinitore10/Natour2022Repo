@@ -27,17 +27,16 @@ public class InsertPresenter {
     private List<MapPoint> points;
     private SentieriDTO sentiero;
 
-
     public InsertPresenter(InsertActivity insertActivity) {
         this.insertActivity = insertActivity;
     }
-
-
 
     public boolean isCorrect(String nome, String descrizione, String dif, String dis, String località, Long hour, Long minute) {
         if(nome.length()==0)
             return false;
         if(descrizione.length() == 0)
+            return false;
+        if(hour != null && hour==0 && minute != null && minute==0)
             return false;
         if(hour == null)
             return false;
@@ -103,7 +102,6 @@ public class InsertPresenter {
     private int convertDurata(Long hour, Long minute){
         return (int) ((hour*60)+minute);
     }
-
 
     public void insertSentiero(){
         insertActivity.progressDialog();

@@ -14,7 +14,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 
-import com.INGSW.NaTour.Model.Sentiero;
 import com.INGSW.NaTour.Presenter.InsertPresenter;
 import com.INGSW.NaTour.R;
 import com.google.android.material.chip.Chip;
@@ -59,7 +58,7 @@ public class InsertActivity extends AppCompatActivity {
         editName = findViewById(R.id.editTextPercorso);
         editDescription = findViewById(R.id.editTextDescizione);
         chipGroupDif = findViewById(R.id.chipGroupDif);
-        chipGroupDis = findViewById(R.id.chipGroupDis);
+        chipGroupDis = findViewById(R.id.chipGroupDisDialog);
         fabCancel = findViewById(R.id.buttonCancel);
         editTimePicker = findViewById(R.id.editTextTime);
         searchableSpinner = findViewById(R.id.searchSpinner1);
@@ -124,7 +123,7 @@ public class InsertActivity extends AppCompatActivity {
             insertPresenter.createSentiero(nome, descrizione, dif, dis, località, hour, minute);
             goNext();
         }else {
-            showError("Compila tutti i campi");
+            showError("Compila tutti i campi in modo giusto");
         }
     }
 

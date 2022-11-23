@@ -41,6 +41,7 @@ public class FotoAdapter extends RecyclerView.Adapter<FotoAdapter.FotoHolder> {
 
         void setDetails(FotoPercorso fotoPercorso){
             Log.d(TAG,"Glide sta per scaricare questa foto: " + fotoPercorso.getUrl());
+
             new Handler().post(() -> {
                 try{
                     Glide.with(context).load(fotoPercorso.getUrl()).into(imageRecyclerView);

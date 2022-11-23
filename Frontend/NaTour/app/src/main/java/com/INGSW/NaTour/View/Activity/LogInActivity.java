@@ -2,13 +2,18 @@ package com.INGSW.NaTour.View.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.INGSW.NaTour.Presenter.LoginPresenter;
 import com.INGSW.NaTour.R;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -20,10 +25,10 @@ public class LogInActivity extends AppCompatActivity {
     private LoginPresenter loginPresenter;
 
     Button buttonSignIn;
-    Button buttonSignUp;
-    Button buttonGoogle;
-    Button buttonGuest;
-    Button buttonFacebook;
+    TextView buttonSignUp;
+    ImageView buttonGoogle;
+    ExtendedFloatingActionButton buttonGuest;
+    ImageView buttonFacebook;
     TextInputEditText editTextUsername;
     TextInputEditText editTextPassword;
 
@@ -87,5 +92,21 @@ public class LogInActivity extends AppCompatActivity {
         pDialog.setCancelable(false);
         pDialog.show();
         return pDialog;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Log.d(TAG, "Tasto Back premuto");
+        new MaterialAlertDialogBuilder(this)
+                .setTitle("Uscire dall'App?")
+                .setMessage("Vuoi uscire dall'App?")
+                .setPositiveButton("SÌ", (dialogInterface, i) -> {
+                    Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+                    homeIntent.addCategory( Intent.CATEGORY_HOME );
+                    homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(homeIntent);
+                })
+                .setNegativeButton("NO", (dialogInterface, i) -> {})
+                .show();
     }
 }

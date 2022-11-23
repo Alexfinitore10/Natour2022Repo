@@ -1,7 +1,10 @@
 package com.INGSW.NaTour.View.Fragment;
 
+import static com.amazonaws.mobile.auth.core.internal.util.ThreadUtils.runOnUiThread;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -17,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.INGSW.NaTour.View.Activity.InsertActivity;
 import com.amplifyframework.auth.options.AuthSignOutOptions;
 import com.amplifyframework.rx.RxAmplify;
 import com.INGSW.NaTour.Extra.Constants;
@@ -33,6 +37,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import io.ticofab.androidgpxparser.parser.GPXParser;
@@ -50,6 +55,7 @@ public class ProfileFragment extends Fragment {
 
     private static ProfileFragment profileFragment;
     private static String TAG = "ProfileFragment";
+    private SweetAlertDialog pDialog;
 
     private ProfileFragment() {/* Required empty public constructor*/}
 
@@ -202,6 +208,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void signOut() {
+        progressDialog();
         if(Constants.LOGIN==2){
             safeLogOut();
         }else{
@@ -233,5 +240,15 @@ public class ProfileFragment extends Fragment {
                     gpxParser(gpxSelected);
                 }
             });
+
+    public void progressDialog(){
+        runOnUiThread(() -> {
+            pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE);
+            pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+            pDialog.setTitleText("Loading ...");
+            pDialog.setCancelable(false);
+            pDialog.show();
+        });
+    }
 
 }

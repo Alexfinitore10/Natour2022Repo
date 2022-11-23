@@ -58,7 +58,9 @@ public class LoginPresenter {
                 error ->{
                     Log.e(TAG, "Errore login: " + error.toString());
                     pdialog.dismissWithAnimation();
-                    logInActivity.showError("Credenziali sbagliate");
+                    if(error.getCause().toString().contains("UserNotConfirmedException")){
+                        logInActivity.showError("Devi confermare l'account");
+                    }else logInActivity.showError("Credenziali sbagliate");
                 }
             );
     }
@@ -113,8 +115,6 @@ public class LoginPresenter {
             );
     }
 
-
-
     public void insertUser(String username, String email) {
         Log.i(TAG,"Inserimento utente in corso");
         User u = new User(username,email);
@@ -147,8 +147,6 @@ public class LoginPresenter {
 
     }
 
-
-
     public void fetchUserAttributes(){
         RxAmplify.Auth.fetchUserAttributes()
                 .subscribeOn(Schedulers.newThread())
@@ -170,7 +168,6 @@ public class LoginPresenter {
                         error -> Log.e("AuthDemo", "Failed to fetch attributes.", error)
                 );
     }
-
 
     public void GuestLogin() {
         Constants.LOGIN=2;

@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.INGSW.NaTour.Extra.Constants;
 import com.INGSW.NaTour.Model.Sentiero;
 import com.bumptech.glide.Glide;
 import com.INGSW.NaTour.Presenter.SentieroPresenter;
@@ -104,6 +105,8 @@ public class SentieroInformazioniFragment extends Fragment {
                 circleCrop()
                 .into(imagePropic);
 
+        if(Constants.LOGIN==2)
+            fabOpinione.setVisibility(View.INVISIBLE);
         fabOpinione.setOnClickListener(view1 -> {
             opinioneDialog();
         });

@@ -44,11 +44,14 @@ public class HomepagePresenter {
 
 
     public void search(Integer hour, Integer minute, String diff, String dis, String loc) {
+        Log.d(TAG, "Search data: " + hour + minute + diff + dis + loc);
         Integer durata = null;
+        Boolean disabilità = null;
         if(hour!= null && minute!=null)
             durata=((hour*60)+minute);
         Integer difficolta = convertDiff(diff);
-        Boolean disabilità = null;
+        if(dis != null)
+            disabilità = convertDis(dis);
         sentieroRequest = new SentieroRequest();
         sentieroRequest.getSentieriByQuery(loc, durata, difficolta, disabilità, new SentieroCallback() {
             @Override
@@ -80,6 +83,14 @@ public class HomepagePresenter {
                 return 3;
         }
         return null;
+    }
+
+    private boolean convertDis(String dis){
+        Log.d(TAG, dis);
+        if(dis.equals("Si")){
+            return true;
+        }
+        return false;
     }
 
     public void delete(Long id) {

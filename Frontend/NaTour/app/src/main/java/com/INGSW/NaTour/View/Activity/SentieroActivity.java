@@ -30,6 +30,8 @@ import org.osmdroid.util.GeoPoint;
 
 import java.util.List;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class SentieroActivity extends AppCompatActivity {
 
     private static final String TAG = "SentieroActivity";
@@ -43,6 +45,7 @@ public class SentieroActivity extends AppCompatActivity {
     ViewPagerAdapter viewPagerAdapter;
     Sentiero sentiero = null;
     ImageView btnModify;
+    SweetAlertDialog dialog;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +108,7 @@ public class SentieroActivity extends AppCompatActivity {
         });
         
         imageView.setOnClickListener(view -> {
+            showLoading();
             sentieroPresenter.getTracciato();
 
             new Handler().postDelayed(() -> {
@@ -116,6 +120,14 @@ public class SentieroActivity extends AppCompatActivity {
     }
 
 
+    public void showLoading() {
+        runOnUiThread(() -> {
+            dialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE)
+                    .setTitleText("Caricamento in corso");
+            dialog.setCancelable(false);
+            dialog.show();
+        });
+    }
 
 
     private void goToMap() {
@@ -125,6 +137,7 @@ public class SentieroActivity extends AppCompatActivity {
             Intent i = new Intent(SentieroActivity.this, OSMapActivity.class);
             i.putExtra("Tracciato", true);
             startActivity(i);
+            dialog.dismiss();
         }else {
             //TODO: Gestire Errore con Alert
             Log.e(TAG, "Tracciato non presente, impossibile visualizzarlo");

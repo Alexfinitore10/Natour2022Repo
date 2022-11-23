@@ -11,6 +11,8 @@ import com.INGSW.NaTour.Presenter.SignUpPresenter;
 import com.INGSW.NaTour.R;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class SignUpActivity extends AppCompatActivity {
 
     private static final String TAG = "SignUpActivity";
@@ -19,6 +21,7 @@ public class SignUpActivity extends AppCompatActivity {
     EditText editTextUsername;
     EditText editTextEmail;
     EditText editTextPassword;
+    EditText editTextPassword2;
 
     SignUpPresenter signUpPresenter;
 
@@ -30,16 +33,31 @@ public class SignUpActivity extends AppCompatActivity {
         signUpPresenter = new SignUpPresenter(this);
 
         buttonSignUp = findViewById(R.id.buttonSignUp2);
-        editTextEmail = findViewById(R.id.editTextEmail2);
-        editTextUsername = findViewById(R.id.editTextUsername2);
-        editTextPassword = findViewById(R.id.editTextPassword2);
+        editTextEmail = findViewById(R.id.editRegisterEmail);
+        editTextUsername = findViewById(R.id.editRegisterUsername);
+        editTextPassword = findViewById(R.id.editTextRegisterPassword2);
+        editTextPassword2 = findViewById(R.id.editTextRegisterPassword);
 
         buttonSignUp.setOnClickListener(v -> {
             Log.d(TAG, "BottoneSignUp premuto");
+            signUp();
+
+            /*
             signUpPresenter.signUp(editTextUsername.getText().toString(),
                     editTextPassword.getText().toString(),
-                    editTextEmail.getText().toString());
+                    editTextEmail.getText().toString());*/
         });
+    }
+
+    private void signUp(){
+        String email = editTextEmail.getText().toString();
+        String username = editTextUsername.getText().toString();
+        String password1 = editTextPassword.getText().toString();
+        String password2 = editTextPassword2.getText().toString();
+
+        if(signUpPresenter.isEmailCorrectAndPasswordCorrentandEqual(email, password1, password2)){
+            signUpPresenter.signUp(username,password1,email);
+        }
     }
 
     public void ConfirmCodeDialog(String username){
@@ -60,4 +78,22 @@ public class SignUpActivity extends AppCompatActivity {
                 .show();
         });
     }
+
+    public void showError(String error) {
+        runOnUiThread(() ->
+                new SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("Errore")
+                        .setContentText(error)
+                        .show());
+    }
+
+    public void showSuccess(String success) {
+        runOnUiThread(() ->
+                new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
+                        .setTitleText("Successo")
+                        .setContentText(success)
+                        .show());
+    }
+
+
 }
