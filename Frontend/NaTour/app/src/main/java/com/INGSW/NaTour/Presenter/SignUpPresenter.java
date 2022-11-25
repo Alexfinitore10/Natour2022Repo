@@ -58,7 +58,10 @@ public class SignUpPresenter {
                             Log.i(TAG, result.isSignUpComplete() ? "Confirm signUp succeeded" : "Confirm sign up not complete");
                             signUpActivity.startActivity(new Intent(signUpActivity, LogInActivity.class));
                         },
-                        error -> Log.e(TAG, error.toString())
+                        error -> {
+                            Log.e(TAG, error.toString());
+                            signUpActivity.showError("Hai sbagliato ad inserire i campi");
+                        }
                 );
     }
 

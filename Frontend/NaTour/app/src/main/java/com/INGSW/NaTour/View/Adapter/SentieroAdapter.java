@@ -69,6 +69,32 @@ public class SentieroAdapter extends RecyclerView.Adapter<SentieroAdapter.Itiner
             Glide.with(context2).load(sentiero.getImmagine()).into(map);
             Glide.with(context2).load(sentiero.getUtenteProprietario().getPropic()).circleCrop().into(propic);
         }
+
+        void convertDataSentieroToUi(int difficolta, int durata){
+            String format = null;
+            String diff = null;
+
+            if(durata>0){
+                int hour = durata/60;
+                int minute = durata - (hour*60);
+                format = String.format("%02d:%02d", hour, minute);
+            }
+            txtTimeCard.setText(format);
+
+            switch (difficolta){
+                case 1:
+                    diff = "Facile";
+                    break;
+                case 2:
+                    diff = "Medio";
+                    break;
+                case 3:
+                    diff = "Difficile";
+                    break;
+                default: break;
+            }
+            txtDifficultCard.setText(diff);
+        }
     }
 
 

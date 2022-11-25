@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.INGSW.NaTour.Presenter.SignUpPresenter;
 import com.INGSW.NaTour.R;
@@ -22,6 +24,7 @@ public class SignUpActivity extends AppCompatActivity {
     EditText editTextEmail;
     EditText editTextPassword;
     EditText editTextPassword2;
+    TextView txtCode;
 
     SignUpPresenter signUpPresenter;
 
@@ -32,6 +35,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         signUpPresenter = new SignUpPresenter(this);
 
+        txtCode = findViewById(R.id.buttonCode);
         buttonSignUp = findViewById(R.id.buttonSignUp2);
         editTextEmail = findViewById(R.id.editRegisterEmail);
         editTextUsername = findViewById(R.id.editRegisterUsername);
@@ -41,12 +45,25 @@ public class SignUpActivity extends AppCompatActivity {
         buttonSignUp.setOnClickListener(v -> {
             Log.d(TAG, "BottoneSignUp premuto");
             signUp();
-
-            /*
-            signUpPresenter.signUp(editTextUsername.getText().toString(),
-                    editTextPassword.getText().toString(),
-                    editTextEmail.getText().toString());*/
         });
+
+        buttonSignUp.setOnClickListener(view -> {
+            MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(this);
+
+            final EditText input = new EditText(this);
+            dialogBuilder.setView(input);
+
+            dialogBuilder.setCancelable(false)
+                    .setTitle("Inserisci l'username")
+                    .setMessage("Inserisci l'username dell'account a quale vuoi confermare l'inscrizione")
+                    .setPositiveButton("INVIA", (dialogInterface, i) -> {
+                        String username = String.valueOf(input.getText());
+                        Log.e(TAG, "L'username per la conferma è: " + username);
+                        ConfirmCodeDialog(username);
+                    })
+                    .show();
+        });
+
     }
 
     private void signUp(){

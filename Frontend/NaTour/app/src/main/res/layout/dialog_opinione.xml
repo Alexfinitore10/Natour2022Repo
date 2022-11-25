@@ -9,13 +9,13 @@
         android:id="@+id/chipGroupDifDialogOpinione"
         android:layout_width="322dp"
         android:layout_height="61dp"
+        android:layout_marginBottom="16dp"
         android:paddingStart="16dp"
         android:paddingTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/textTimePickerDialogOpinione"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         app:selectionRequired="true"
         app:singleSelection="true">
 
@@ -58,6 +58,7 @@
         android:focusable="false"
         android:hint="Seleziona durata"
         android:paddingStart="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chipGroupDifDialogOpinione"

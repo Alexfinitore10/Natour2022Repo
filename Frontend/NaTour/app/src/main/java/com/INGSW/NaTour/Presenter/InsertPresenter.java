@@ -60,13 +60,18 @@ public class InsertPresenter {
     }
 
     public void trackFromMap(List<GeoPoint> actualPoints){
-        points = new ArrayList<MapPoint>();
-        for(GeoPoint g: actualPoints){
-            points.add(new MapPoint(g.getLongitude(),g.getLatitude()));
-        }
+        points = convertGeoPointToMapPoint(actualPoints);
         Log.d(TAG, "Map Track :" + points.toString());
         sentiero.setTracciato(points);
         insertSentiero();
+    }
+
+    private List<MapPoint> convertGeoPointToMapPoint(List<GeoPoint> geoPoints){
+        List<MapPoint> point = new ArrayList<MapPoint>();
+        for(GeoPoint g: geoPoints){
+            point.add(new MapPoint(g.getLongitude(),g.getLatitude()));
+        }
+        return point;
     }
 
     public void createSentiero(String nome, String descrizione, String dif, String dis, String località, Long hour, Long minute) {
@@ -109,8 +114,14 @@ public class InsertPresenter {
         sentieroRequest.insertSentiero(sentiero, new SentieroCallback() {
             @Override
             public void onSuccessResponse(boolean response) {
-                Log.d(TAG, "Percorso inserito con successo tornando alla homepage");
-                insertActivity.successDialog();
+                if(response){
+                    Log.d(TAG, "Percorso inserito con successo tornando alla homepage");
+                    insertActivity.successDialog();
+                }else {
+                    Log.e(TAG, "Percorso non inserito");
+                    insertActivity.errorDialog();
+                }
+
             }
 
             @Override

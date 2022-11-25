@@ -53,7 +53,6 @@ public class InsertActivity extends AppCompatActivity {
 
         insertPresenter = new InsertPresenter(this);
 
-
         fabNext = findViewById(R.id.buttonNext);
         editName = findViewById(R.id.editTextPercorso);
         editDescription = findViewById(R.id.editTextDescizione);
@@ -121,7 +120,7 @@ public class InsertActivity extends AppCompatActivity {
 
         if(insertPresenter.isCorrect(nome, descrizione, dif, dis, località, hour, minute)){
             insertPresenter.createSentiero(nome, descrizione, dif, dis, località, hour, minute);
-            goNext();
+            choiceDialog();
         }else {
             showError("Compila tutti i campi in modo giusto");
         }
@@ -129,7 +128,7 @@ public class InsertActivity extends AppCompatActivity {
 
 
 
-    private void goNext(){
+    private void choiceDialog(){
         new MaterialAlertDialogBuilder(this)
                 .setTitle("Come vuoi inserire un tracciato?")
                 .setPositiveButton("Mappa", (dialogInterface, i) -> {
@@ -224,7 +223,7 @@ public class InsertActivity extends AppCompatActivity {
                         showError("Impossibile aprire il file");
                     }
                     insertPresenter.gpxMap(gpxSteam);
-                }
+                }else{showError("Errore");}
             });
 
     @Override

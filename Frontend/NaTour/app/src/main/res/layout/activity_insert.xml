@@ -31,7 +31,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="12dp"
             android:layout_marginBottom="1dp"
             android:hint="Nome percorso"
             android:paddingStart="16dp"
@@ -46,11 +46,10 @@
         </com.google.android.material.textfield.TextInputLayout>
 
 
-
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="12dp"
             android:layout_marginBottom="1dp"
             android:hint="Descrizione percorso"
             android:paddingStart="16dp"
@@ -60,8 +59,8 @@
                 android:id="@+id/editTextDescizione"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLines="4"
                 android:maxLength="256"
+                android:maxLines="4"
                 android:paddingStart="16dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -150,7 +149,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="16dp"
-            android:paddingTop="32dp"
+            android:paddingTop="12dp"
             android:text="Questo percorso è adatto ai disabili? "
             android:textSize="20sp"
             android:textStyle="bold" />

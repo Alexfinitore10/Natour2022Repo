@@ -10,30 +10,39 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="descriptionFragment"
+            tools:layout_editor_absoluteX="411dp"
+            tools:layout_editor_absoluteY="891dp" />
+
         <TextView
             android:id="@+id/descriptionFragment"
             android:layout_width="match_parent"
-            android:layout_height="550dp"
+            android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_medium"
             android:paddingStart="15dp"
             android:paddingLeft="25dp"
             android:paddingTop="25dp"
             android:paddingRight="25dp"
             android:paddingBottom="25dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nomePercorsoFragment"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/nomePercorsoFragment" />
 
         <ImageView
             android:id="@+id/propicFragment"
             android:layout_width="81dp"
             android:layout_height="76dp"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:src="@drawable/icons8_male_user_96"
+            app:layout_constraintBottom_toTopOf="@+id/view2"
+            app:layout_constraintEnd_toStartOf="@+id/LocalitaFragment"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,8 +51,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginBottom="32dp"
             android:text="Località"
+            app:layout_constraintBottom_toTopOf="@+id/view2"
             app:layout_constraintStart_toEndOf="@+id/propicFragment"
             app:layout_constraintTop_toBottomOf="@+id/profileNameFragment" />
 
@@ -52,13 +62,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="22dp"
+            android:layout_marginBottom="32dp"
             android:layout_weight="1"
             android:drawableLeft="@drawable/ic_time"
             android:drawablePadding="2dp"
             android:paddingStart="8dp"
             android:text="TextView"
+            app:layout_constraintBottom_toTopOf="@+id/view2"
             app:layout_constraintEnd_toStartOf="@+id/disableFragment"
             app:layout_constraintStart_toEndOf="@+id/LocalitaFragment"
             app:layout_constraintTop_toBottomOf="@+id/difficultyFragment" />
@@ -68,11 +79,13 @@
             android:layout_width="89dp"
             android:layout_height="25dp"
             android:layout_marginTop="24dp"
+            android:layout_marginBottom="8dp"
             android:layout_weight="1"
             android:drawableLeft="@drawable/ic_difficile"
             android:drawablePadding="2dp"
             android:paddingStart="8dp"
             android:text="TextView"
+            app:layout_constraintBottom_toTopOf="@+id/timeFragment"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.617"
             app:layout_constraintStart_toEndOf="@+id/profileNameFragment"
@@ -83,10 +96,12 @@
             android:layout_width="29dp"
             android:layout_height="24dp"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="32dp"
             android:layout_weight="1"
             android:drawableRight="@drawable/ic_disabile"
             android:drawablePadding="2dp"
             android:paddingStart="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/view2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/timeFragment"
             app:layout_constraintTop_toBottomOf="@+id/difficultyFragment" />
@@ -97,8 +112,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
+            android:layout_marginBottom="16dp"
             android:maxLength="16"
             android:text="Nome"
+            app:layout_constraintBottom_toTopOf="@+id/LocalitaFragment"
             app:layout_constraintStart_toEndOf="@+id/propicFragment"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -106,25 +123,25 @@
             android:id="@+id/view2"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginBottom="97dp"
             android:background="#c0c0c0"
-            app:layout_constraintBottom_toTopOf="@+id/descriptionFragment"
+            app:layout_constraintBottom_toTopOf="@+id/nomePercorsoFragment"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/propicFragment"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/propicFragment" />
 
         <TextView
             android:id="@+id/nomePercorsoFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
             android:text="TextView"
-            android:textSize="30sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toTopOf="@+id/descriptionFragment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view2" />
 
@@ -135,7 +152,7 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
             android:layout_marginStart="123dp"
-            android:layout_marginTop="576dp"
+            android:layout_marginTop="1dp"
             android:layout_marginEnd="67dp"
             android:contentDescription="Login"
             android:text="Esprimi un opinione"
@@ -144,21 +161,22 @@
             app:backgroundTint="#91C1A4"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.49"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nomePercorsoFragment"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toBottomOf="@+id/txtAlert" />
 
         <TextView
             android:id="@+id/txtAlert"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginTop="583dp"
             android:textColor="#EF6C00"
             app:layout_constraintBottom_toTopOf="@+id/buttonOpinione"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionFragment"
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

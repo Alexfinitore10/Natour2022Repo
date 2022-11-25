@@ -1,5 +1,7 @@
 package com.INGSW.NaTour.View.Fragment;
 
+import static com.amazonaws.mobile.auth.core.internal.util.ThreadUtils.runOnUiThread;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -39,6 +41,8 @@ import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class HomepageFragment extends Fragment {
 
@@ -205,9 +209,6 @@ public class HomepageFragment extends Fragment {
         searchDialog.show();
     }
 
-    private void getLayoutSearchDialog(){
-
-    }
 
     public void updateRecycler(List<Sentiero> sentieri) {
         itinerari.clear();
@@ -229,6 +230,14 @@ public class HomepageFragment extends Fragment {
         super.onResume();
         Log.d(TAG, "onResume e update sentieri");
         homepagePresenter.getItinerari();
+    }
+
+    public void showError(String text) {
+        runOnUiThread(() ->
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("Errore")
+                        .setContentText(text)
+                        .show());
     }
 
 }

@@ -1,5 +1,7 @@
 package com.INGSW.NaTour.Presenter;
 
+import static com.amazonaws.mobile.auth.core.internal.util.ThreadUtils.runOnUiThread;
+
 import android.util.Log;
 
 import com.INGSW.NaTour.Model.Sentiero;
@@ -8,6 +10,8 @@ import com.INGSW.NaTour.Retrofit.Request.SentieroRequest;
 import com.INGSW.NaTour.View.Fragment.HomepageFragment;
 
 import java.util.List;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class HomepagePresenter {
 
@@ -43,6 +47,7 @@ public class HomepagePresenter {
     }
 
 
+
     public void search(Integer hour, Integer minute, String diff, String dis, String loc) {
         Log.d(TAG, "Search data: " + hour + minute + diff + dis + loc);
         Integer durata = null;
@@ -60,12 +65,19 @@ public class HomepagePresenter {
             @Override
             public void onSuccessList(List<Sentiero> sentieri) {
                 Log.d(TAG+" sentieroRequestQuery Risposta: ", sentieri.toString());
-                homepageFragment.updateRecycler(sentieri);
+                if(sentieri.isEmpty()){
+                    Log.d(TAG, "Li lista è vuota");
+                    homepageFragment.showError("Non esistono sentieri corrispondenti ai filtri inseriti");
+                }else {
+                    Log.d(TAG, "La lista è piena e aggiorniamo");
+                    homepageFragment.updateRecycler(sentieri);
+                }
             }
 
             @Override
             public void onFailure(Throwable throwable) {
                 Log.e(TAG, throwable.toString());
+                homepageFragment.showError("Errore nella ricerca");
             }
         });
 
@@ -113,4 +125,5 @@ public class HomepagePresenter {
             }
         });
     }
+
 }
