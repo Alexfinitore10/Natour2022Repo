@@ -63,11 +63,7 @@ public class OSMapActivity extends AppCompatActivity {
         if (!isLocationPermissionGranted())
             requestLocationPermissions();
 
-        if (isPermissionEnable()) {
-            Log.d(TAG, "I permessi di localizazzione sono attivi");
-        } else {
-            Log.e(TAG, "I permessi di localizazzione NON sono attivi");
-        }
+
 
         btnCurrentPosition = findViewById(R.id.fabCurrent);
         btnConfirm = findViewById(R.id.fabConfirm);
@@ -111,7 +107,7 @@ public class OSMapActivity extends AppCompatActivity {
             map.getOverlays().add(evOverlay);
         }
 
-        btnCurrentPosition.setOnClickListener(view -> getCurrentLocation());
+        btnCurrentPosition.setOnClickListener(view -> checkPermissionForLocation());
 
         btnConfirm.setOnClickListener(view -> {
             if(line.getActualPoints().size() >= 2){
@@ -207,6 +203,20 @@ public class OSMapActivity extends AppCompatActivity {
         return LocationManagerCompat.isLocationEnabled(locationManager);
     }
 
+    private void checkPermissionForLocation(){
+        if(!isLocationPermissionGranted()){
+            showError("Non hai dato i permessi all'appliccazione, svuota la cache per richiedere i permessi");
+            return;
+        }
+        if (isPermissionEnable()) {
+            Log.d(TAG, "La localizazzione sono attivi");
+            getCurrentLocation();
+        } else {
+            Log.e(TAG, "La localizzazzione non è attiva");
+            showError("La localizzazzione non è attiva");
+        }
+    }
+
     private void getCurrentLocation(){
         Log.d(TAG, "getCurrentLocation");
         if(currentPosition == null){
@@ -248,5 +258,7 @@ public class OSMapActivity extends AppCompatActivity {
         map.getOverlays().add(line);
         map.getController().setCenter(line.getActualPoints().get(0));
     }
+
+
 
 }

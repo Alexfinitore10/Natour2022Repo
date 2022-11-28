@@ -12,13 +12,10 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-
-
 public class RetrofitClient {
 
     private static final String TAG = "RetrofitClient";
     private static Retrofit RetrofitClient;
-
 
     private static OkHttpClient okClient() {
         return new OkHttpClient.Builder()
@@ -34,7 +31,6 @@ public class RetrofitClient {
             Log.d(TAG,"RetrofitClient non presente, creazione in corso");
             RetrofitClient = new Retrofit.Builder()
                     .baseUrl("http://" + Constants.IP_ADDRESS + ":" + Constants.PORT+ "/")
-                    //.baseUrl("http://192.168.1.101:9999/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(okClient())
                     .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
