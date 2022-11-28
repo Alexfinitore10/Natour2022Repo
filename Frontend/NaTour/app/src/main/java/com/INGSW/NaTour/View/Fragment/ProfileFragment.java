@@ -89,122 +89,6 @@ public class ProfileFragment extends Fragment {
             signOut();
         });
 
-        getView().findViewById(R.id.button3).setOnClickListener(view12 -> {
-            //testQuery("Milano");
-            List<MapPoint> mapPoints = new ArrayList<MapPoint>();
-            mapPoints.add(new MapPoint(24.17,43.05));
-            //mapPoints.add(new MapPoint(25.17,44.05));
-
-            System.out.println("AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH"+ mapPoints);
-
-            Long id = new Long(2);
-
-            SentieroRequest sentieroRequest = new SentieroRequest();
-            sentieroRequest.insertTracciatoSentiero(id, mapPoints, new SentieroCallback() {
-                @Override
-                public void onSuccessResponse(boolean response) {
-                    if(!response){
-                        Log.e(TAG,"Errore: non sono riusciuto ad inserire il tracciato");
-                    }else{
-                        Log.d(TAG,"Inserito con successo!");
-                    }
-                }
-
-                @Override
-                public void onSuccessList(List<Sentiero> sentieri) {
-
-                }
-
-                @Override
-                public void onFailure(Throwable throwable) {
-                    Log.e(TAG,"Errore: non sono riusciuto ad inserire il tracciato " + throwable.toString());
-                }
-            });
-
-        });
-
-        getView().findViewById(R.id.GPX).setOnClickListener(view13 -> {
-            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-            intent.setType("application/octet-stream");
-            intent.addCategory(Intent.CATEGORY_OPENABLE);
-            someActivityResultLauncher.launch(intent);
-        });
-
-    }
-
-    private void gpxParser(Uri uri) {
-        GPXParser parser = new GPXParser(); // consider injection
-        Gpx parsedGpx = null;
-        try {
-            InputStream in = getContext().getContentResolver().openInputStream(uri);
-            parsedGpx = parser.parse(in); // consider using a background thread
-        } catch (IOException | XmlPullParserException e) {
-            e.printStackTrace();
-        }
-
-
-        if (parsedGpx == null) {
-            // error parsing track
-        } else {
-
-            //Log.d("GpxParserRoute: ", parsedGpx.getRoutes().toString());
-            //Log.d("GpxParserTrack: ", parsedGpx.getTracks().toString());
-            //Log.d("GpxParserWayPointes: ", parsedGpx.getWayPoints().toString());
-
-            //List<TrackPoint> trackPointsList = null;
-            List<Route> routeList;
-            List<TrackPoint> trackList;
-            List<WayPoint> waypointList;
-
-
-
-            if(parsedGpx.getRoutes() != null && parsedGpx.getRoutes().size() != 0){
-                routeList = parsedGpx.getRoutes();
-                System.out.println(routeList);
-                List<RoutePoint> routePoints= routeList.get(0).getRoutePoints();
-                for(RoutePoint r: routePoints){
-                    System.out.println(r.getLatitude() + " " + r.getLongitude());
-                }
-            }else if(parsedGpx.getTracks() != null && parsedGpx.getTracks().size() != 0){
-                trackList = parsedGpx.getTracks().get(0).getTrackSegments().get(0).getTrackPoints();
-                for(TrackPoint t: trackList){
-                    System.out.println(t.getLatitude() + " " + t.getLongitude());
-                }
-            }else if(parsedGpx.getWayPoints() != null && parsedGpx.getWayPoints().size() != 0){
-                waypointList = parsedGpx.getWayPoints();
-                for(WayPoint w: waypointList){
-                    System.out.println(w.getLatitude() + " " + w.getLongitude());
-                }
-            }
-
-
-
-
-
-        }
-
-    }
-
-    private void testQuery(String milano) {
-
-        SentieroRequest sentieroRequest = new SentieroRequest();
-        sentieroRequest.getSentieriByQuery(milano, null, null, null, new SentieroCallback() {
-            @Override
-            public void onSuccessResponse(boolean response) {
-
-            }
-
-            @Override
-            public void onSuccessList(List<Sentiero> sentieri) {
-                Log.d("dfjngdfngkndfkgdf", sentieri.toString());
-            }
-
-            @Override
-            public void onFailure(Throwable throwable) {
-                Log.e("fdnkgdfnklgfd", throwable.toString());
-            }
-        });
-
     }
 
     private void signOut() {
@@ -217,10 +101,10 @@ public class ProfileFragment extends Fragment {
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(
                             () -> {
-                                Log.i("AuthQuickstart", "Signed out globally");
+                                Log.i(TAG, "Signed out globally");
                                 safeLogOut();
                             },
-                            error -> Log.e("AuthQuickstart", error.toString())
+                            error -> Log.e(TAG, error.toString())
                     );
         }
 
@@ -231,15 +115,6 @@ public class ProfileFragment extends Fragment {
         getActivity().finish();
     }
 
-    ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            result -> {
-                if (result.getResultCode() == Activity.RESULT_OK) {
-                    Intent data = result.getData();
-                    Uri gpxSelected = data.getData();
-                    gpxParser(gpxSelected);
-                }
-            });
 
     public void progressDialog(){
         runOnUiThread(() -> {

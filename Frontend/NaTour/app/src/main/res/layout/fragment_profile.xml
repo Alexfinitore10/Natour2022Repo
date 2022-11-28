@@ -17,17 +17,6 @@
             android:layout_height="wrap_content"
             android:text="SignOut" />
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Button" />
-
-        <Button
-            android:id="@+id/GPX"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="GPX" />
     </LinearLayout>
 
 </FrameLayout>

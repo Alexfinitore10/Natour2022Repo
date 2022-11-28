@@ -100,7 +100,7 @@ public class SentieroInformazioniFragment extends Fragment {
         txtLocalità.setText(sentieroPresenter.getSentiero().getLocalità());
         txtDescription.setText(sentieroPresenter.getSentiero().getDescrizione());
         if(sentieroPresenter.getSentiero().getLastModified() != null)
-            txtAlert.setText("Le informazioni sono state modificate da un admin in data: " + sentieroPresenter.getSentiero().getLastModified());
+            txtAlert.setText("Le info sono state modificate da un admin in data: " + sentieroPresenter.getSentiero().getLastModified());
         Glide.with(getContext()).load(sentieroPresenter.getSentiero().getUtenteProprietario().getPropic()).
                 circleCrop()
                 .into(imagePropic);

@@ -48,10 +48,11 @@ public class SentieroAdapter extends RecyclerView.Adapter<SentieroAdapter.Itiner
 
         void setDetails(Sentiero sentiero){
             Log.d(TAG, "setDetail : " + sentiero.toString());
-            txtTimeCard.setText(converTime(sentiero.getDurata()));
+            convertDataSentieroToUi(sentiero.getDifficolta(), sentiero.getDurata());
+            //txtTimeCard.setText(converTime(sentiero.getDurata()));
             txtSubnameCard.setText(sentiero.getLocalità());
             txtDescriptionCard.setText(sentiero.getNome());
-            txtDifficultCard.setText(convertDifficulty(sentiero.getDifficolta()));
+            //txtDifficultCard.setText(convertDifficulty(sentiero.getDifficolta()));
             txtNameCard.setText(sentiero.getUtenteProprietario().getUsername());
             if(sentiero.isDisabile() == false){
                 txtDisabileCard.setVisibility(View.INVISIBLE);
@@ -71,15 +72,7 @@ public class SentieroAdapter extends RecyclerView.Adapter<SentieroAdapter.Itiner
         }
 
         void convertDataSentieroToUi(int difficolta, int durata){
-            String format = null;
-            String diff = null;
-
-            if(durata>0){
-                int hour = durata/60;
-                int minute = durata - (hour*60);
-                format = String.format("%02d:%02d", hour, minute);
-            }
-            txtTimeCard.setText(format);
+            String format, diff;
 
             switch (difficolta){
                 case 1:
@@ -91,9 +84,17 @@ public class SentieroAdapter extends RecyclerView.Adapter<SentieroAdapter.Itiner
                 case 3:
                     diff = "Difficile";
                     break;
-                default: break;
+                default: diff = null;
             }
             txtDifficultCard.setText(diff);
+
+            if(durata>0){
+                int hour = durata/60;
+                int minute = durata - (hour*60);
+                format = String.format("%02d:%02d", hour, minute);
+            }else format=null;
+
+            txtTimeCard.setText(format);
         }
     }
 

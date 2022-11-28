@@ -67,7 +67,6 @@ public class OSMapActivity extends AppCompatActivity {
             Log.d(TAG, "I permessi di localizazzione sono attivi");
         } else {
             Log.e(TAG, "I permessi di localizazzione NON sono attivi");
-
         }
 
         btnCurrentPosition = findViewById(R.id.fabCurrent);

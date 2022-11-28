@@ -49,6 +49,8 @@ public class SentieroPresenter {
         this.sentiero = sentiero;
     }
 
+    public SentieroPresenter() {}
+
     public void getFoto() {
         FotoPercorsoRequest fotoPercorsoRequest = new FotoPercorsoRequest();
         fotoPercorsoRequest.getPhotoBySentiero(sentiero.getId(), new FotoPercorsoCallback() {
@@ -206,33 +208,45 @@ public class SentieroPresenter {
     }
 
     public void createOpinion(Integer hour, Integer minute, String diff) {
-        //TODO:Fare testing
-        Integer durata = null;
-        Integer difficolta = null;
-
-        if(hour != null && minute != null){
-            durata = (hour*60)+minute;
-        }else if(minute == null && hour!=null){
-            durata = hour*60;
-        }else if(minute!=null){
-            durata = minute;
-        }
-
-        switch (diff){
-            case "Facile":
-                difficolta=1;
-                break;
-            case "Medio":
-                difficolta=2;
-                break;
-            case "Difficile":
-                difficolta=3;
-                break;
-        }
+        Integer durata = convertHourAndMinuteToMinute(hour,minute);
+        Integer difficolta = convertDisabileToInt(diff);
 
         Log.d(TAG, "createOpinion: "+ durata + "-" + difficolta);
         OpinioneDTO opinioneDTO = new OpinioneDTO(difficolta,durata, sentiero.getId(), Constants.utente.getId());
         insertOpinion(opinioneDTO);
+    }
+
+    public Integer convertDisabileToInt(String diff){
+        switch (diff){
+            case "Facile":
+                return 1;
+            case "Medio":
+                return 2;
+            case "Difficile":
+                return 3;
+        }
+        return null;
+    }
+
+    public Integer convertHourAndMinuteToMinute(Integer hour, Integer minute){
+        Integer durata = null;//1
+
+        if(hour!=null && hour >= 0 && minute != null && minute >=0){//2
+            if(hour==0 && minute == 0)//3
+                throw new IllegalArgumentException();//4
+            durata = (hour*60)+minute;//5
+        }else if(hour == null && minute==null)//6
+            throw new IllegalArgumentException();//7
+
+        if(durata==null){//8
+            if(hour == null && minute >= 0){//9
+                durata = minute;//10
+            }else if(minute == null && hour >= 0){//11
+                durata = hour*60;//12
+            } else throw new IllegalArgumentException();//13
+        }
+
+        return durata;//14
     }
 
     public void insertOpinion(OpinioneDTO opinioneDTO){

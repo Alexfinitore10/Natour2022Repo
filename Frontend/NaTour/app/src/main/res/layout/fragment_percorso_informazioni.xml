@@ -152,7 +152,6 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
             android:layout_marginStart="123dp"
-            android:layout_marginTop="1dp"
             android:layout_marginEnd="67dp"
             android:contentDescription="Login"
             android:text="Esprimi un opinione"
@@ -163,20 +162,24 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtAlert" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/txtAlert"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="583dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="75dp"
+            android:layout_marginBottom="1dp"
             android:textColor="#EF6C00"
-            app:layout_constraintBottom_toTopOf="@+id/buttonOpinione"
+            app:autoSizeMinTextSize="2sp"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toTopOf="@+id/nomePercorsoFragment"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintHorizontal_bias="0.467"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/descriptionFragment"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="@+id/propicFragment"
+            app:layout_constraintVertical_bias="1.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

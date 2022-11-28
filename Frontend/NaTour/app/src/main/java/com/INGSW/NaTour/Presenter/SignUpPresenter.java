@@ -97,7 +97,7 @@ public class SignUpPresenter {
 
     public boolean isEmailCorrectAndPasswordCorrentandEqual(String email, String pass1, String pass2){
         String regexEmailValid = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
-        String regexStrongPasswordValid = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$";
+        String regexStrongPasswordValid = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*\\=\\-\\_\\:\\.\\,\\\"\\€\\/\\\\\\^]).{8,}$";
 
         Pattern patternEmail = Pattern.compile(regexEmailValid);
         Pattern patternPassword = Pattern.compile(regexStrongPasswordValid);
@@ -128,7 +128,6 @@ public class SignUpPresenter {
         }
 
         return true;
-
     }
 
 
