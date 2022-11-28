@@ -21,8 +21,6 @@ public class TestConvertHourAndMinuteToMinute {
         1) Giusto (>=0)
         2) Sbagliato (<0)
         3) Sbagliato null
-
-    Test1) Hour=1, Minute=10 1,2,3,5,8,14
 */
 
     SentieroPresenter sentieroPresenter;
