@@ -60,7 +60,6 @@
         <activity
             android:name=".View.Activity.SignUpActivity"
             android:exported="false" />
-        <activity android:name=".View.Activity.Homepage1Activity" />
         <activity
             android:name=".View.Activity.LogInActivity"
             android:exported="false" />

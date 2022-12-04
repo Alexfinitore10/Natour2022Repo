@@ -83,25 +83,6 @@ public class BottomNavigationActivity extends AppCompatActivity {
 
 
     }
-/*
-    private void replaceFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-       // if(current == null){
-        //    fragmentTransaction.replace(R.id.frameLayout, fragment);
-        //    fragmentTransaction.commit();
-         //   current = fragment;
-       // }else{
-            //Log.d("Fragment", "RICCHIONE SONO SU: " + current + " E VOGLIO -> " +fragment);
-            fragmentTransaction.hide(current).show(fragment).commit();
-        //}
-
-
-        //fragmentTransaction.hide(current).show(fragment).commit();
-
-        //fragmentManager.beginTransaction().add(R.id.main_container, fragment3, "3").hide(fragment3).commit();
-    }*/
 
     @Override
     public void onBackPressed() {

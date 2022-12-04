@@ -181,8 +181,13 @@ public class EditActivity extends AppCompatActivity {
             località = (String) searchableSpinner.getSelectedItem();
         }
 
-
         int durata = (int) ((hour*60)+minute);
+
+        if(Constants.utente==null){
+            Log.e(TAG,"Utente non presente");
+            showError("Errore, impossibile continuare l'operazione, riprova più tardi");
+            return;
+        }
 
         Log.d(TAG, "Dati da aggiornare: " + nome + " " + descrizione + " " + dif + " " + dis + " "+ località + " " + hour + " " + minute);
         SentieriDTO sentieroDTO = new SentieriDTO(nome,descrizione,durata,convertDiff(dif),convertDis(dis),località, Constants.utente.getId());

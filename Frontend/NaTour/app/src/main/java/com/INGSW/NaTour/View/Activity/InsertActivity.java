@@ -5,6 +5,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -16,6 +17,7 @@ import android.widget.ArrayAdapter;
 
 import com.INGSW.NaTour.Presenter.InsertPresenter;
 import com.INGSW.NaTour.R;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -61,7 +63,6 @@ public class InsertActivity extends AppCompatActivity {
         fabCancel = findViewById(R.id.buttonCancel);
         editTimePicker = findViewById(R.id.editTextTime);
         searchableSpinner = findViewById(R.id.searchSpinner1);
-
 
         Resources res = getResources();
         String[] comuni = res.getStringArray(R.array.comuni);

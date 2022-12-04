@@ -1,5 +1,7 @@
 package com.INGSW.NaTour.View.Fragment;
 
+import static com.amazonaws.mobile.auth.core.internal.util.ThreadUtils.runOnUiThread;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -28,6 +30,8 @@ import com.INGSW.NaTour.View.Adapter.FotoAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class SentieroFotoFragment extends Fragment {
 
@@ -71,9 +75,7 @@ public class SentieroFotoFragment extends Fragment {
         if(Constants.LOGIN==2){
             FABFoto.setVisibility(View.INVISIBLE);
         }
-
         sentieroPresenter.getFoto();
-        //fotoAdapter.notifyDataSetChanged();
 
         FABFoto.setOnClickListener(view1 -> {
             Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -94,5 +96,13 @@ public class SentieroFotoFragment extends Fragment {
 
     public ArrayList<FotoPercorso> getFotos() {
         return fotos;
+    }
+
+    public void showError(String text) {
+        runOnUiThread(() ->
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("Errore")
+                        .setContentText(text)
+                        .show());
     }
 }

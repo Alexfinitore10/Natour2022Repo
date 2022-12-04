@@ -137,12 +137,17 @@ public class SentieroPresenter {
             if (cut != -1) {
                 nameFoto = nameFoto.substring(cut + 1);
             }
-            Log.d(TAG, "nome foto " + nameFoto);
+            Log.d(TAG, "Nome foto: " + nameFoto);
 
             String imageUpload = enc + nameFoto;
 
-            Log.d(TAG, "immaggine: " + imageUpload + exampleInputStream.toString());
+            Log.d(TAG, "Immagine: " + imageUpload + exampleInputStream.toString());
 
+            if(Constants.utente==null){
+                Log.e(TAG,"Utente non presente");
+                sentieroFotoFragment.showError("Errore, impossibile continuare l'operazione, riprova più tardi");
+                return;
+            }
 
             RxStorageBinding.RxProgressAwareSingleOperation<StorageUploadInputStreamResult> rxUploadOperation =
                     RxAmplify.Storage.uploadInputStream(imageUpload, exampleInputStream);
@@ -212,6 +217,11 @@ public class SentieroPresenter {
         Integer difficolta = convertDisabileToInt(diff);
 
         Log.d(TAG, "createOpinion: "+ durata + "-" + difficolta);
+        if(Constants.utente==null){
+            Log.e(TAG,"Utente non presente");
+            sentieroInformazioniFragment.showError("Errore, impossibile continuare l'operazione, riprova più tardi");
+            return;
+        }
         OpinioneDTO opinioneDTO = new OpinioneDTO(difficolta,durata, sentiero.getId(), Constants.utente.getId());
         insertOpinion(opinioneDTO);
     }

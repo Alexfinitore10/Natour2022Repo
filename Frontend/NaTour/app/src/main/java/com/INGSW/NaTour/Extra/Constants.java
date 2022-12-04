@@ -5,9 +5,7 @@ import com.INGSW.NaTour.Model.User;
 public class Constants {
 
     //Retrofit connection
-    //public static final String IP_ADDRESS = "192.168.1.101";
     public static final String IP_ADDRESS = "natour.ddns.net";
-    //public static final String IP_ADDRESS = "151.77.81.28";
     public static final String PORT = "25565";
 
     //Cognito info
@@ -15,6 +13,6 @@ public class Constants {
 
     //public static int INSERT = 0; //0 = Non bisogna inserire l'utente nel db, 1 = invece sì
 
-    public static User utente;
+    public static User utente=null;
 
 }

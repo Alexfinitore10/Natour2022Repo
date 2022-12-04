@@ -23,7 +23,7 @@ public class GpxManager {
 
     public static List<MapPoint> getTrack(InputStream in) {
         try {
-            gpx = parser.parse(in); // consider using a background thread
+            gpx = parser.parse(in);
         } catch (IOException | XmlPullParserException e) {
             e.printStackTrace();
         }
@@ -34,11 +34,6 @@ public class GpxManager {
             // error parsing track
         } else {
 
-            //Log.d("GpxParserRoute: ", parsedGpx.getRoutes().toString());
-            //Log.d("GpxParserTrack: ", parsedGpx.getTracks().toString());
-            //Log.d("GpxParserWayPointes: ", parsedGpx.getWayPoints().toString());
-
-            //List<TrackPoint> trackPointsList = null;
             List<Route> routeList;
             List<TrackPoint> trackList;
             List<WayPoint> waypointList;

@@ -80,6 +80,12 @@ public class InsertPresenter {
         int difficolta = convertDiff(dif);
         boolean disabile = convertDis(dis);
 
+        if(Constants.utente==null){
+            Log.e(TAG,"Utente non presente");
+            insertActivity.errorDialog();
+            return;
+        }
+
         sentiero = new SentieriDTO(nome,descrizione,durata,difficolta,disabile,località, Constants.utente.getId());
         Log.d(TAG, "Sentiero creato: " + sentiero.toString());
     }

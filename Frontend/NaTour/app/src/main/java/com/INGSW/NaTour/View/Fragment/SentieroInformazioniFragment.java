@@ -1,5 +1,7 @@
 package com.INGSW.NaTour.View.Fragment;
 
+import static com.amazonaws.mobile.auth.core.internal.util.ThreadUtils.runOnUiThread;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -28,6 +30,8 @@ import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 
 import java.util.concurrent.TimeUnit;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class SentieroInformazioniFragment extends Fragment {
 
@@ -207,5 +211,13 @@ public class SentieroInformazioniFragment extends Fragment {
         }else if(sentiero.getDifficolta()==2){
             txtDifficulty.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_medio, 0, 0, 0);
         }
+    }
+
+    public void showError(String text) {
+        runOnUiThread(() ->
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("Errore")
+                        .setContentText(text)
+                        .show());
     }
 }
