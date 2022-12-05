@@ -7,15 +7,15 @@ public class FotoPercorso {
 
     private String url;
 
-    private Sentiero sentieriProprietario;
+    private Sentiero sentiero;
 
 
     public FotoPercorso(){}
 
-    public FotoPercorso(Long id, String url, Sentiero sentieriProprietario) {
+    public FotoPercorso(Long id, String url, Sentiero sentiero) {
         this.id = id;
         this.url = url;
-        this.sentieriProprietario = sentieriProprietario;
+        this.sentiero = sentiero;
     }
 
     public Long getId() {
@@ -34,12 +34,12 @@ public class FotoPercorso {
         this.url = url;
     }
 
-    public Sentiero getSentieriProprietario() {
-        return sentieriProprietario;
+    public Sentiero getSentiero() {
+        return sentiero;
     }
 
-    public void setSentieriProprietario(Sentiero sentieriProprietario) {
-        this.sentieriProprietario = sentieriProprietario;
+    public void setSentiero(Sentiero sentiero) {
+        this.sentiero = sentiero;
     }
 
     @Override
@@ -47,7 +47,7 @@ public class FotoPercorso {
         return "FotoPercorso{" +
                 "id=" + id +
                 ", url='" + url + '\'' +
-                ", sentieriProprietario=" + sentieriProprietario +
+                ", sentieriProprietario=" + sentiero +
                 '}';
     }
 }

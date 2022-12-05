@@ -98,14 +98,14 @@ public class SentieroInformazioniFragment extends Fragment {
             txtDifficulty.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_medio, 0, 0, 0);
         }
         txtNome.setText(sentieroPresenter.getSentiero().getNome());
-        txtProfileName.setText(sentieroPresenter.getSentiero().getUtenteProprietario().getUsername());
+        txtProfileName.setText(sentieroPresenter.getSentiero().getUtente().getUsername());
         txtDifficulty.setText(convertDifficulty(sentieroPresenter.getSentiero().getDifficolta()));
         txtTime.setText(converTime(sentieroPresenter.getSentiero().getDurata()));
         txtLocalità.setText(sentieroPresenter.getSentiero().getLocalità());
         txtDescription.setText(sentieroPresenter.getSentiero().getDescrizione());
         if(sentieroPresenter.getSentiero().getLastModified() != null)
             txtAlert.setText("Le info sono state modificate da un admin in data: " + sentieroPresenter.getSentiero().getLastModified());
-        Glide.with(getContext()).load(sentieroPresenter.getSentiero().getUtenteProprietario().getPropic()).
+        Glide.with(getContext()).load(sentieroPresenter.getSentiero().getUtente().getPropic()).
                 circleCrop()
                 .into(imagePropic);
 
@@ -200,7 +200,7 @@ public class SentieroInformazioniFragment extends Fragment {
         txtDifficulty.setText(convertDifficulty(sentiero.getDifficolta()));
         txtTime.setText(converTime(sentiero.getDurata()));
         if(sentiero.getLastModified() != null)
-            txtAlert.setText("Le informazioni sono state modificate da un admin in data: " + sentiero.getLastModified());
+            txtAlert.setText("Le info sono state modificate da un admin in data: " + sentiero.getLastModified());
         if(sentiero.isDisabile() == false){
             txtDisable.setVisibility(View.INVISIBLE);
         }else {

@@ -55,7 +55,7 @@ public class SignUpActivity extends AppCompatActivity {
 
             dialogBuilder.setCancelable(false)
                     .setTitle("Inserisci l'username")
-                    .setMessage("Inserisci l'username dell'account a quale vuoi confermare l'inscrizione")
+                    .setMessage("Inserisci l'username dell'account a quale vuoi confermare l'iscrizione")
                     .setPositiveButton("INVIA", (dialogInterface, i) -> {
                         String username = String.valueOf(input.getText());
                         Log.e(TAG, "L'username per la conferma è: " + username);

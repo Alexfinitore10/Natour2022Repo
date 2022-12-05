@@ -121,7 +121,6 @@ public class InsertActivity extends AppCompatActivity {
 
         if(insertPresenter.isCorrect(nome, descrizione, dif, dis, località, hour, minute)){
             insertPresenter.createSentiero(nome, descrizione, dif, dis, località, hour, minute);
-            choiceDialog();
         }else {
             showError("Compila tutti i campi in modo giusto");
         }
@@ -129,7 +128,7 @@ public class InsertActivity extends AppCompatActivity {
 
 
 
-    private void choiceDialog(){
+    public void choiceDialog(){
         new MaterialAlertDialogBuilder(this)
                 .setTitle("Come vuoi inserire un tracciato?")
                 .setPositiveButton("Mappa", (dialogInterface, i) -> {
@@ -173,7 +172,7 @@ public class InsertActivity extends AppCompatActivity {
                 .show();
     }
 
-    private void showError(String text) {
+    public void showError(String text) {
         runOnUiThread(() ->
                 new SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE)
                         .setTitleText("Errore")
@@ -209,6 +208,7 @@ public class InsertActivity extends AppCompatActivity {
         pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
         pDialog.cancel();
     }
+
 
     ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),

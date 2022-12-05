@@ -16,20 +16,19 @@ public class Sentiero implements Serializable {
     private String immagine;
     private String lastModified;
 
-    //private User utenteProprietario;
-    private User utenteProprietario;
+    private User utente;
     private List<FotoPercorso> fotoSentiero;
     private List<MapPoint> tracciato;
 
 
-    public Sentiero(String nome, String descrizione, int durata, int difficolta, boolean disabile, String località, User utenteProprietario) {
+    public Sentiero(String nome, String descrizione, int durata, int difficolta, boolean disabile, String località, User utente) {
         this.nome = nome;
         this.descrizione = descrizione;
         this.durata = durata;
         this.difficolta = difficolta;
         this.disabile = disabile;
         this.località = località;
-        this.utenteProprietario = utenteProprietario;
+        this.utente = utente;
     }
 
     public List<FotoPercorso> getFotoSentiero() {
@@ -112,12 +111,12 @@ public class Sentiero implements Serializable {
         this.tracciato = tracciato;
     }
 
-    public User getUtenteProprietario() {
-        return utenteProprietario;
+    public User getUtente() {
+        return utente;
     }
 
-    public void setUtenteProprietario(User utenteProprietario) {
-        this.utenteProprietario = utenteProprietario;
+    public void setUtente(User utente) {
+        this.utente = utente;
     }
 
     public String getLastModified() {
@@ -139,7 +138,7 @@ public class Sentiero implements Serializable {
                 ", disabile=" + disabile +
                 ", località='" + località + '\'' +
                 ", immagine='" + immagine + '\'' +
-                ", utenteid=" + utenteProprietario +
+                ", utenteid=" + utente +
                 '}';
     }
 }

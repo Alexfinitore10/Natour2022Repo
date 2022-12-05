@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         t.start();
         t.join();
 
-        if(value.equals("")){
+        if(value.toString().equals("")){
             return false;
         }else {
             return true;

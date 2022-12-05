@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -49,11 +48,9 @@ public class SentieroAdapter extends RecyclerView.Adapter<SentieroAdapter.Itiner
         void setDetails(Sentiero sentiero){
             Log.d(TAG, "setDetail : " + sentiero.toString());
             convertDataSentieroToUi(sentiero.getDifficolta(), sentiero.getDurata());
-            //txtTimeCard.setText(converTime(sentiero.getDurata()));
             txtSubnameCard.setText(sentiero.getLocalità());
             txtDescriptionCard.setText(sentiero.getNome());
-            //txtDifficultCard.setText(convertDifficulty(sentiero.getDifficolta()));
-            txtNameCard.setText(sentiero.getUtenteProprietario().getUsername());
+            txtNameCard.setText(sentiero.getUtente().getUsername());
             if(sentiero.isDisabile() == false){
                 txtDisabileCard.setVisibility(View.INVISIBLE);
             }else {
@@ -68,7 +65,7 @@ public class SentieroAdapter extends RecyclerView.Adapter<SentieroAdapter.Itiner
 
 
             Glide.with(context2).load(sentiero.getImmagine()).into(map);
-            Glide.with(context2).load(sentiero.getUtenteProprietario().getPropic()).circleCrop().into(propic);
+            Glide.with(context2).load(sentiero.getUtente().getPropic()).circleCrop().into(propic);
         }
 
         void convertDataSentieroToUi(int difficolta, int durata){

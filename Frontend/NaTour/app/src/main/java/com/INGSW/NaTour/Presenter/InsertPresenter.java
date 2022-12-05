@@ -82,12 +82,13 @@ public class InsertPresenter {
 
         if(Constants.utente==null){
             Log.e(TAG,"Utente non presente");
-            insertActivity.errorDialog();
+            insertActivity.showError("Errore, impossibile proseguire l'operazione, riprova più tardi");
             return;
         }
 
         sentiero = new SentieriDTO(nome,descrizione,durata,difficolta,disabile,località, Constants.utente.getId());
         Log.d(TAG, "Sentiero creato: " + sentiero.toString());
+        insertActivity.choiceDialog();
     }
 
     private int convertDiff(String dif){
@@ -125,7 +126,7 @@ public class InsertPresenter {
                     insertActivity.successDialog();
                 }else {
                     Log.e(TAG, "Percorso non inserito");
-                    insertActivity.errorDialog();
+                    insertActivity.showError("Errore nella creazione del percorso");
                 }
 
             }

@@ -12,17 +12,17 @@ public class SentieriDTO {
     private int difficolta;
     private boolean disabile;
     private String località;
-    private Long idPropietario;
+    private Long idUtente;
     private List<MapPoint> tracciato;
 
-    public SentieriDTO(String nome, String descrizione, int durata, int difficolta, boolean disabile, String località, Long idPropietario) {
+    public SentieriDTO(String nome, String descrizione, int durata, int difficolta, boolean disabile, String località, Long idUtente) {
         this.nome = nome;
         this.descrizione = descrizione;
         this.durata = durata;
         this.difficolta = difficolta;
         this.disabile = disabile;
         this.località = località;
-        this.idPropietario = idPropietario;
+        this.idUtente = idUtente;
     }
 
     public String getNome() {
@@ -73,12 +73,12 @@ public class SentieriDTO {
         this.località = località;
     }
 
-    public Long getIdPropietario() {
-        return idPropietario;
+    public Long getIdUtente() {
+        return idUtente;
     }
 
-    public void setIdPropietario(Long idPropietario) {
-        this.idPropietario = idPropietario;
+    public void setIdUtente(Long idUtente) {
+        this.idUtente = idUtente;
     }
 
     public List<MapPoint> getTracciato() {
@@ -101,7 +101,7 @@ public class SentieriDTO {
                 ", difficolta=" + difficolta +
                 ", disabile=" + disabile +
                 ", località='" + località + '\'' +
-                ", idPropietario=" + idPropietario +
+                ", idUtente=" + idUtente +
                 ", tracciato=" + tracciato +
                 '}';
     }

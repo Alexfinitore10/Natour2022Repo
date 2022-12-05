@@ -23,12 +23,13 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position){
             case 0:
-                Log.d(TAG, "Ho ricreato il percorso");
+                Log.d(TAG, "Ho ricreato il percorsoFragment");
                 return new SentieroInformazioniFragment();
             case 1:
+                Log.d(TAG, "Ho ricreato il percorsoFoto");
                 return new SentieroFotoFragment();
             default:
-                Log.d(TAG, "Ho ricreato il percorso");
+                Log.d(TAG, "Ho ricreato il percorsoFragment");
                 return new SentieroInformazioniFragment();
         }
     }

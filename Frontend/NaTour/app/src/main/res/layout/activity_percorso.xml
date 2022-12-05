@@ -25,11 +25,13 @@
 
             <TextView
                 android:id="@+id/txtNomePercorso"
-                android:layout_width="wrap_content"
+                app:autoSizeMinTextSize="2sp"
+                app:autoSizeTextType="uniform"
+                android:layout_width="127dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="TextView"
-                android:textSize="32sp"
+                android:textSize="34sp"
                 android:textStyle="bold" />
 
             <ImageView
