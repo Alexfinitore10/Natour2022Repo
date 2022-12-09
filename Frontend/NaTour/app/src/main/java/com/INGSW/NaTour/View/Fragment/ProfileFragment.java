@@ -19,9 +19,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.INGSW.NaTour.View.Activity.InsertActivity;
 import com.amplifyframework.auth.options.AuthSignOutOptions;
+import com.amplifyframework.core.Amplify;
 import com.amplifyframework.rx.RxAmplify;
 import com.INGSW.NaTour.Extra.Constants;
 import com.INGSW.NaTour.MainActivity;
@@ -31,6 +34,7 @@ import com.INGSW.NaTour.R;
 import com.INGSW.NaTour.Retrofit.CallbackInterface.SentieroCallback;
 import com.INGSW.NaTour.Retrofit.Request.SentieroRequest;
 import com.INGSW.NaTour.View.Activity.LogInActivity;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -51,7 +55,9 @@ import org.xmlpull.v1.XmlPullParserException;
 
 public class ProfileFragment extends Fragment {
 
-    Button signOutButton;
+    ExtendedFloatingActionButton signOutButton;
+    ImageView profileImage;
+    TextView profileText;
 
     private static ProfileFragment profileFragment;
     private static String TAG = "ProfileFragment";
@@ -81,7 +87,17 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Button signOutButton = (Button) getView().findViewById(R.id.SignOutButton);
+        signOutButton = getView().findViewById(R.id.SignOutButton);
+        profileImage = getView().findViewById(R.id.profileImage);
+        profileText = getView().findViewById(R.id.profileText);
+        if(Constants.LOGIN==2){
+            profileImage.setVisibility(View.INVISIBLE);
+            profileText.setVisibility(View.INVISIBLE);
+        }
+
+        if(Amplify.Auth.getCurrentUser() != null){
+            profileText.setText(Amplify.Auth.getCurrentUser().getUsername());
+        }
 
         signOutButton.setOnClickListener(view1 -> {
             if(Constants.LOGIN==2)

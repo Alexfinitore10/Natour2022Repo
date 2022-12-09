@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.location.LocationManagerCompat;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -51,18 +52,20 @@ public class OSMapActivity extends AppCompatActivity {
     private FloatingActionButton btnDelete;
     private Polyline line = null;
     private Boolean insertMode = true;
+    private Context ctx;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_osmap);
 
-        Context ctx = this.getApplicationContext();
+        ctx = this.getApplicationContext();
         Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx));
 
-        if (!isLocationPermissionGranted())
+        if (!isLocationPermissionGranted()){
+            Log.d(TAG,"Permessi non attivi, richiedo permessi");
             requestLocationPermissions();
-
+        }else Log.d(TAG, "Permessi attivi!");
 
 
         btnCurrentPosition = findViewById(R.id.fabCurrent);
@@ -183,19 +186,13 @@ public class OSMapActivity extends AppCompatActivity {
                 "Dammi i permessi",
                 1,
                 Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.ACCESS_NETWORK_STATE,
-                Manifest.permission.ACCESS_WIFI_STATE);
+                Manifest.permission.ACCESS_FINE_LOCATION);
     }
 
     private boolean isLocationPermissionGranted() {
         return EasyPermissions.hasPermissions(this,
                 Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.ACCESS_NETWORK_STATE,
-                Manifest.permission.ACCESS_WIFI_STATE);
+                Manifest.permission.ACCESS_FINE_LOCATION);
     }
 
     private boolean isPermissionEnable(){

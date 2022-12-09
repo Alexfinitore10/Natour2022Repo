@@ -5,8 +5,7 @@ import com.INGSW.NaTour.Model.User;
 public class Constants {
 
     //Retrofit connection
-    //public static final String IP_ADDRESS = "natour.ddns.net";
-    public static final String IP_ADDRESS = "192.168.1.101";
+    public static final String IP_ADDRESS = "natour.ddns.net";
     public static final String PORT = "25565";
 
     //Cognito info

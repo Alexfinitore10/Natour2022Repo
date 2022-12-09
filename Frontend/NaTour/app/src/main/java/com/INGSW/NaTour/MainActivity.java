@@ -79,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("http://" + Constants.IP_ADDRESS + ":" + Constants.PORT);
                 URL url = new URL("http://" + Constants.IP_ADDRESS + ":" + Constants.PORT);
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                //urlConnection.setReadTimeout(30);
+                //urlConnection.setConnectTimeout(30);
                 InputStream in = new BufferedInputStream(urlConnection.getInputStream());
                 urlConnection.disconnect();
                 Scanner s = new Scanner(in).useDelimiter("\\A");

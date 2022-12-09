@@ -39,7 +39,6 @@ public class EditActivity extends AppCompatActivity {
     private TextInputEditText editTimePicker, editName, editDescription;
     private Long hour, minute;
     private Sentiero sentiero;
-   // private MaterialTimePicker materialTimePicker;
     String località = null;
 
 

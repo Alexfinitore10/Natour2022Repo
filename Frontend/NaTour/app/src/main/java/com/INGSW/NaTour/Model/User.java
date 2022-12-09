@@ -14,17 +14,20 @@ public class User implements Serializable {
 
     private String propic;
 
+    private Boolean admin;
+
     public User(String username, String email) {
         this.username = username;
         this.email = email;
     }
 
-    public User(Long id, String username, String email, String descrizione, String propic) {
+    public User(Long id, String username, String email, String descrizione, String propic, Boolean admin) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.descrizione = descrizione;
         this.propic = propic;
+        this.admin = admin;
     }
 
     public Long getId() {
@@ -75,6 +78,7 @@ public class User implements Serializable {
                 ", email='" + email + '\'' +
                 ", descrizione='" + descrizione + '\'' +
                 ", propic='" + propic + '\'' +
+                ", admin=" + admin +
                 '}';
     }
 }

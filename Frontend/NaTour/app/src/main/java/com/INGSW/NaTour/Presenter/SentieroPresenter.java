@@ -261,6 +261,7 @@ public class SentieroPresenter {
 
     public void insertOpinion(OpinioneDTO opinioneDTO){
         OpinioneRequest opinioneRequest = new OpinioneRequest();
+        sentieroInformazioniFragment.showLoading();
         opinioneRequest.insertOpinione(opinioneDTO, new OpinioneCallback() {
             @Override
             public void onSuccessResponse(boolean response) {
@@ -271,12 +272,14 @@ public class SentieroPresenter {
             public void onSuccess(Sentiero sentieroUpdated) {
                 Log.d(TAG,"Opinione aggiunta con successo, ecco i dati: Difficoltà: " + sentieroUpdated.getDifficolta() + "Durata: " + sentieroUpdated.getDurata());
                 sentiero = sentieroUpdated;
+                sentieroInformazioniFragment.showSuccess("Opinione inserita con successo, i dati sono stati reilaborati");
                 sentieroInformazioniFragment.updateInformation();
             }
 
             @Override
             public void onFailure(Throwable throwable) {
                 Log.e(TAG, "Opinione non aggiunta " + throwable);
+                sentieroInformazioniFragment.showError("Errore, la tua opinione non è stata aggiunta, riprova");
             }
         });
     }

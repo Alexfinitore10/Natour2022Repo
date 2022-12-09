@@ -48,6 +48,7 @@ public class SentieroInformazioniFragment extends Fragment {
     private ImageView imagePropic;
     private ExtendedFloatingActionButton fabOpinione;
     private MaterialAlertDialogBuilder opinioneDialog;
+    private SweetAlertDialog dialog;
     Integer hour, minute;
     String diff, dis, loc;
 
@@ -148,7 +149,11 @@ public class SentieroInformazioniFragment extends Fragment {
             Chip chipDif = layout.findViewById(chipGroupDif.getCheckedChipId());
             if(chipDif!=null)
                 diff = String.valueOf(chipDif.getText());
-            sentieroPresenter.createOpinion(hour,minute,diff);
+            if(hour != null && minute != null && diff != null){
+                sentieroPresenter.createOpinion(hour,minute,diff);
+            }else {
+                showError("Inserisci tutti i campi");
+            }
             resetValue();
         });
         opinioneDialog.setNegativeButton("Annulla", (dialogInterface, i) -> {});
@@ -219,5 +224,27 @@ public class SentieroInformazioniFragment extends Fragment {
                         .setTitleText("Errore")
                         .setContentText(text)
                         .show());
+    }
+
+    public void showLoading() {
+        runOnUiThread(() -> {
+            dialog = new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE)
+                    .setTitleText("Caricamento in corso");
+            dialog.setCancelable(false);
+            dialog.show();
+        });
+    }
+
+    public void showSuccess(String success){
+        runOnUiThread(() -> {
+            if(dialog != null){
+                dialog.dismissWithAnimation();
+                dialog = null;
+                new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                        .setTitleText("Successo")
+                        .setContentText(success)
+                        .show();
+            }
+        });
     }
 }

@@ -101,6 +101,8 @@ public class HomepageFragment extends Fragment {
             floatingActionButton.setVisibility(View.INVISIBLE);
         }
 
+        floatingActionButton.shrink();
+
         context = getContext();
         itinerari = new ArrayList<>();
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
