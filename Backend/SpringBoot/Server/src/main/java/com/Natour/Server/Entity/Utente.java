@@ -33,32 +33,20 @@ public class Utente {
 
 
     @JsonBackReference
-    @OneToMany(mappedBy = "utenteProprietario", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "utente", cascade = CascadeType.ALL)
     private List<Sentieri> listaSentieri;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "utenteProprietario", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "utente", cascade = CascadeType.ALL)
     private List<Opinioni> listaOpinioni;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "utentePropietario", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "utente", cascade = CascadeType.ALL)
     private List<FotoSentiero> fotoSentiero;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "utentePropietario", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "utente", cascade = CascadeType.ALL)
     private List<Email> emailList;
-
-
-    //@ElementCollection // 1
-    //@CollectionTable(name = "my_list", joinColumns = @JoinColumn(name = "id")) // 2
-    //@Column(name = "list") // 3
-    //private List<String> photo;
-/*
-    public Utente(String username, String email) {
-        this.username = username;
-        this.email = email;
-    }
-*/
 
     @Override
     public String toString() {

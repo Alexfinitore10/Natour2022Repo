@@ -49,7 +49,7 @@ public class EmailSenderService {
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         Email email = modelMapper.map(emailDTO, Email.class);
         Utente utente = utenteRepository.getById(emailDTO.getUtenteid());
-        email.setUtentePropietario(utente);
+        email.setUtente(utente);
 
         List<Utente> utenti = utenteRepository.findAll();
 

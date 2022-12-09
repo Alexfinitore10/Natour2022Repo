@@ -11,13 +11,9 @@ import java.util.List;
 
 public interface SentieriRepository extends JpaRepository<Sentieri,Long> {
 
-    //@Query()
-    List<Sentieri> findAllByutenteProprietarioId(Long id);
+    List<Sentieri> findAllByutenteId(Long id);
 
     List<Sentieri> findAllByOrderByIdDesc();
-
-    List<Sentieri> findAllByLocalitàAndDurataAndDifficoltaAndDisabile(String località, Integer durata, Integer difficolta, Boolean disabile);
-
 
     @Query("""  
        select a from Sentieri a where
@@ -29,15 +25,4 @@ public interface SentieriRepository extends JpaRepository<Sentieri,Long> {
        """)
     List<Sentieri> getSentieriByQuery(@Param("località")String località, @Param("durata")Integer durata, @Param("difficolta")Integer difficolta, @Param("disabile")Boolean disabile);
 
-    /*
-
-    @Query("""
-       select a from Sentieri a where
-       (?1 is null or a.località = ?1)
-       and (?2 is null or a.durata= ?2)
-       and (?3 is null or a.difficolta = ?3)
-       and (?4 is null or a.disabile = ?4)
-       """)
-        and (:disabile null or a.disabile = :disabile)
-     */
 }

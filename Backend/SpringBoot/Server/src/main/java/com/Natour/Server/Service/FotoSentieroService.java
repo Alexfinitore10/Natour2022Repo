@@ -1,7 +1,6 @@
 package com.Natour.Server.Service;
 
 import com.Natour.Server.DTO.FotoSentieroDTO;
-import com.Natour.Server.DTO.SentieriDTO;
 import com.Natour.Server.Entity.FotoSentiero;
 import com.Natour.Server.Entity.Sentieri;
 import com.Natour.Server.Entity.Utente;
@@ -35,8 +34,8 @@ public class FotoSentieroService {
         FotoSentiero foto = modelMapper.map(fotoSentieroDTO, FotoSentiero.class);
         Sentieri sentiero = sentieriRepository.getById(fotoSentieroDTO.getIdSentieri());
         Utente utente = utenteRepository.getById(fotoSentieroDTO.getIdUtente());
-        foto.setSentieriProprietario(sentiero);
-        foto.setUtentePropietario(utente);
+        foto.setSentiero(sentiero);
+        foto.setUtente(utente);
         fotoSentieroRepository.save(foto);
     }
 

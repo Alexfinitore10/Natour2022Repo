@@ -22,7 +22,7 @@ public class SentieriDTO {
     private int difficolta;
     private boolean disabile;
     private String località;
-    private Long idPropietario;
+    private Long idUtente;
     private List<GeoPointDTO> tracciato;
     private String immagine = "https://i.ibb.co/42VKNxz/media-1.png";
 
@@ -35,7 +35,7 @@ public class SentieriDTO {
                 ", difficolta=" + difficolta +
                 ", disabile=" + disabile +
                 ", località='" + località + '\'' +
-                ", idPropietario=" + idPropietario +
+                ", idUtente=" + idUtente +
                 ", tracciato=" + tracciato +
                 ", immagine='" + immagine + '\'' +
                 '}';

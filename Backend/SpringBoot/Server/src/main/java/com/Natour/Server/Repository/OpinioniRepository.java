@@ -9,7 +9,7 @@ import java.util.List;
 public interface OpinioniRepository extends JpaRepository<Opinioni, Long> {
 
 
-    List<Opinioni> findAllListBysentieriProprietarioId(Long id);
+    List<Opinioni> findAllListBysentieroId(Long id);
 
 
 }
