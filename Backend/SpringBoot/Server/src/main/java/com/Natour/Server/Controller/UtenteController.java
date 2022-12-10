@@ -21,24 +21,9 @@ public class UtenteController {
         return utenteService.getAllUtenti();
     }
 
-    @GetMapping("/utentiDTO")
-    List<UtenteDTO> getUtentiDTO(){
-        return utenteService.getAllUtentiDTO();
-    }
-
-    /*@GetMapping("/utenti/{id}")
-    Utente getUtente(@PathVariable Long id){
-        return utenteService.getUtentiById(id);
-    }*/
-
     @GetMapping("/utente/{username}")
     Utente getUtenteByUsername(@PathVariable String username){
         return utenteService.getUtenteByUsername(username);
-    }
-
-    @PostMapping("/newutenti")
-    Utente createUtente(@RequestBody Utente newUtente){
-        return utenteService.saveUtenti(newUtente);
     }
 
     @PostMapping("/newutente")
@@ -46,11 +31,6 @@ public class UtenteController {
         utenteService.saveUtente(newUtenteDTO);
     }
 
-
-    @GetMapping("/checkEmail")
-    ResponseEntity<String> isEmailExists(){
-        return ResponseEntity.status(465).body("Email exists");
-    }
 
 
 

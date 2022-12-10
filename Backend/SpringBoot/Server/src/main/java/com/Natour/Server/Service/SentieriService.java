@@ -44,12 +44,9 @@ public class SentieriService {
     }
 
     public void saveSentiero(SentieriDTO sentieriDTO){
-
-        //System.out.println(sentieriDTO.toString());
-
         Sentieri sentiero = modelMapper.map(sentieriDTO,Sentieri.class);
-        Utente utente = utenteRepository.getById(sentieriDTO.getIdPropietario());
-        sentiero.setUtenteProprietario(utente);
+        Utente utente = utenteRepository.getById(sentieriDTO.getIdUtente());
+        sentiero.setUtente(utente);
 
         List<GeoPoint> geoPoints = new ArrayList<GeoPoint>();
 
@@ -59,7 +56,7 @@ public class SentieriService {
                 g.setLatitude(dto.getLatitude());
                 g.setLongitude(dto.getLongitude());
                 g.setDate(Instant.now().toString());
-                g.setSentieriProprietario(sentiero);
+                g.setSentiero(sentiero);
                 geoPoints.add(g);
             }
         }
@@ -72,7 +69,7 @@ public class SentieriService {
     }
 
     public List<Sentieri> getSentieriByUser(long user_id) {
-       return sentieriRepository.findAllByutenteProprietarioId(user_id);
+       return sentieriRepository.findAllByutenteId(user_id);
     }
 
     public List<Sentieri> getSentieriByUserIdOrderAsc() {
@@ -99,7 +96,7 @@ public class SentieriService {
             g.setLatitude(dto.getLatitude());
             g.setLongitude(dto.getLongitude());
             g.setDate(Instant.now().toString());
-            g.setSentieriProprietario(sentieri);
+            g.setSentiero(sentieri);
             geoPoints.add(g);
         }
 
@@ -124,7 +121,7 @@ public class SentieriService {
 
     public Sentieri update(Long id, SentieriDTO sentieriDTO) {
         Sentieri sentiero = sentieriRepository.getById(id);
-        Utente utente = utenteRepository.getById(sentieriDTO.getIdPropietario());
+        Utente utente = utenteRepository.getById(sentieriDTO.getIdUtente());
 
         Sentieri sentieroToUpdate = modelMapper.map(sentieriDTO,Sentieri.class);
 

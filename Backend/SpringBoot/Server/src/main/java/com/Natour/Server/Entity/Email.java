@@ -29,7 +29,7 @@ public class Email {
     @JsonManagedReference
     @ManyToOne(fetch =  FetchType.EAGER)
     @JoinColumn(name = "id_utente", nullable = false, referencedColumnName = "utente_id")
-    private Utente utentePropietario;
+    private Utente utente;
 
 
     public Email(String toEmail, String subject, String body) {

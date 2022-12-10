@@ -10,8 +10,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.nio.MappedByteBuffer;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -38,26 +36,24 @@ public class Sentieri {
     private String lastModified=null;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @JsonProperty("utenteProprietario")
+    @JsonProperty("utente")
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_proprietario", nullable = false, referencedColumnName = "utente_id")
-    private Utente utenteProprietario;
+    @JoinColumn(name = "id_utente", nullable = false, referencedColumnName = "utente_id")
+    private Utente utente;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "sentieriProprietario", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "sentiero", cascade = CascadeType.ALL)
     private List<FotoSentiero> fotoSentiero;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "sentieriProprietario", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "sentiero", cascade = CascadeType.ALL)
     private List<Opinioni> opinioniSentiero;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "sentieriProprietario", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "sentiero", cascade = CascadeType.ALL)
     private List<GeoPoint> geopointSentiero;
 
-   // @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
-   // private List<Foto> fotosentiero = new ArrayList<Foto>();
 
 
     @Override
@@ -71,7 +67,7 @@ public class Sentieri {
                 ", disabile=" + disabile +
                 ", località='" + località + '\'' +
                 ", immagine='" + immagine + '\'' +
-                ", utenteProprietario=" + utenteProprietario +
+                ", utente=" + utente +
                 ", opinioniSentiero=" + opinioniSentiero +
                 '}';
     }

@@ -22,7 +22,7 @@ public class GeoPoint {
     @JsonBackReference
     @ManyToOne(fetch =  FetchType.EAGER)
     @JoinColumn(name = "id_sentieri", nullable = false, referencedColumnName = "sentieri_id")
-    private Sentieri sentieriProprietario;
+    private Sentieri sentiero;
 
     public GeoPoint(){
         date = Instant.now().toString();
@@ -34,11 +34,11 @@ public class GeoPoint {
         this.latitude = latitude;
     }
 
-    public GeoPoint(Double longitude, Double latitude, Sentieri sentieriProprietario) {
+    public GeoPoint(Double longitude, Double latitude, Sentieri sentiero) {
         this.date = Instant.now().toString();
         this.longitude = longitude;
         this.latitude = latitude;
-        this.sentieriProprietario = sentieriProprietario;
+        this.sentiero = sentiero;
     }
 
 }

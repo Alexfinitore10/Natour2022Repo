@@ -29,24 +29,6 @@ public class UtenteService {
         return (List<Utente>) utenteRepository.findAll();
     }
 
-    public List<UtenteDTO> getAllUtentiDTO(){
-        List<UtenteDTO> utentiDTO = new ArrayList<UtenteDTO>();
-        List<Utente> utenti = utenteRepository.findAll();
-        for (Utente u: utenti){
-            utentiDTO.add(modelMapperUtente.map(u,UtenteDTO.class));
-        }
-        return utentiDTO;
-    }
-
-    public Utente getUtentiById(Long id){
-
-        return utenteRepository.findById(id).orElseThrow();
-    }
-
-    public Utente saveUtenti(Utente newutente){
-        return utenteRepository.save(newutente);
-    }
-
     public void saveUtente(UtenteDTO newutenteDTO) throws UsernameAlreadyExistsException {
         Utente utente = convertDTOToEntity(newutenteDTO);
         List<Utente> utenti = utenteRepository.findAll();
