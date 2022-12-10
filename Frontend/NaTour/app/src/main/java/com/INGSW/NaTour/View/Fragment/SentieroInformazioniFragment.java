@@ -97,6 +97,8 @@ public class SentieroInformazioniFragment extends Fragment {
             txtDifficulty.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_facile, 0, 0, 0);
         }else if(sentieroPresenter.getSentiero().getDifficolta()==2){
             txtDifficulty.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_medio, 0, 0, 0);
+        }else if(sentieroPresenter.getSentiero().getDifficolta()==3){
+            txtDifficulty.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_difficile, 0, 0, 0);
         }
         txtNome.setText(sentieroPresenter.getSentiero().getNome());
         txtProfileName.setText(sentieroPresenter.getSentiero().getUtente().getUsername());
@@ -194,6 +196,8 @@ public class SentieroInformazioniFragment extends Fragment {
             txtDifficulty.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_facile, 0, 0, 0);
         }else if(sentieroPresenter.getSentiero().getDifficolta()==2){
             txtDifficulty.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_medio, 0, 0, 0);
+        }else if(sentieroPresenter.getSentiero().getDifficolta()==3){
+            txtDifficulty.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_difficile, 0, 0, 0);
         }
     }
 
@@ -215,6 +219,8 @@ public class SentieroInformazioniFragment extends Fragment {
             txtDifficulty.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_facile, 0, 0, 0);
         }else if(sentiero.getDifficolta()==2){
             txtDifficulty.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_medio, 0, 0, 0);
+        }else if(sentieroPresenter.getSentiero().getDifficolta()==3){
+            txtDifficulty.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_difficile, 0, 0, 0);
         }
     }
 

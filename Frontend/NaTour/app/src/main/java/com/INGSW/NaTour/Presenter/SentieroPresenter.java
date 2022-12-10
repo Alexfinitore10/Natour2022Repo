@@ -285,6 +285,7 @@ public class SentieroPresenter {
     }
 
     public void updateView(Sentiero sentiero) {
+
         sentieroInformazioniFragment.updateSentiero(sentiero);
     }
 

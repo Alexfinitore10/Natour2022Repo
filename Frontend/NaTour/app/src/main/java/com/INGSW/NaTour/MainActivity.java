@@ -76,15 +76,16 @@ public class MainActivity extends AppCompatActivity {
         AtomicReference<String> value = new AtomicReference<>("");
         Thread t = new Thread(() -> {
             try {
-                System.out.println("http://" + Constants.IP_ADDRESS + ":" + Constants.PORT);
+                Log.d(TAG,"Sto per pingare " + "http://" + Constants.IP_ADDRESS + ":" + Constants.PORT);
                 URL url = new URL("http://" + Constants.IP_ADDRESS + ":" + Constants.PORT);
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                //urlConnection.setReadTimeout(30);
-                //urlConnection.setConnectTimeout(30);
+                urlConnection.setReadTimeout(1500);
+                urlConnection.setConnectTimeout(1500);
                 InputStream in = new BufferedInputStream(urlConnection.getInputStream());
                 urlConnection.disconnect();
                 Scanner s = new Scanner(in).useDelimiter("\\A");
                 String result = s.hasNext() ? s.next() : "";
+                Log.d(TAG, "Risposta server: " + result.toString());
                 value.set(result);
             }catch (Exception e){
                 System.out.println(e);

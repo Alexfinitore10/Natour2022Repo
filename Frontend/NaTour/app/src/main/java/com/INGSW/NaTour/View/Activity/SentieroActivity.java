@@ -161,6 +161,7 @@ public class SentieroActivity extends AppCompatActivity {
             Sentiero sentiero = (Sentiero) i.getSerializableExtra("result");
             Log.d(TAG, "Sentiero ricevuto: " + sentiero.toString());
             sentieroPresenter.setSentiero(sentiero);
+            txtNome.setText(sentiero.getNome());
             sentieroPresenter.updateView(sentiero);
         }else{
             Log.d(TAG, "Non ho ricevuto niente");

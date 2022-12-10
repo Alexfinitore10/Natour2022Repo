@@ -2,6 +2,7 @@ package com.INGSW.NaTour.View.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,6 +26,7 @@ public class SignUpActivity extends AppCompatActivity {
     EditText editTextPassword;
     EditText editTextPassword2;
     TextView txtCode;
+    SweetAlertDialog pDialog;
 
     SignUpPresenter signUpPresenter;
 
@@ -44,10 +46,11 @@ public class SignUpActivity extends AppCompatActivity {
 
         buttonSignUp.setOnClickListener(v -> {
             Log.d(TAG, "BottoneSignUp premuto");
+            showLoading();
             signUp();
         });
 
-        buttonSignUp.setOnClickListener(view -> {
+        txtCode.setOnClickListener(view -> {
             MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(this);
 
             final EditText input = new EditText(this);
@@ -58,7 +61,7 @@ public class SignUpActivity extends AppCompatActivity {
                     .setMessage("Inserisci l'username dell'account a quale vuoi confermare l'iscrizione")
                     .setPositiveButton("INVIA", (dialogInterface, i) -> {
                         String username = String.valueOf(input.getText());
-                        Log.e(TAG, "L'username per la conferma è: " + username);
+                        Log.d(TAG, "L'username per la conferma è: " + username);
                         ConfirmCodeDialog(username);
                     })
                     .show();
@@ -89,7 +92,8 @@ public class SignUpActivity extends AppCompatActivity {
                 .setMessage("Inserisci il codice di conferma che hai ricevuto via email")
                 .setPositiveButton("INVIA", (dialogInterface, i) -> {
                     String verificationCode = String.valueOf(input.getText());
-                    Log.e(TAG, "Il codice di verifica è: " + verificationCode);
+                    Log.d(TAG, "Il codice di verifica è: " + verificationCode);
+                    showLoading();
                     signUpPresenter.AmplifyConfirmCode(username, verificationCode);
                 })
                 .show();
@@ -97,20 +101,41 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void showError(String error) {
-        runOnUiThread(() ->
-                new SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE)
-                        .setTitleText("Errore")
-                        .setContentText(error)
-                        .show());
+        runOnUiThread(() -> {
+            dismissLoading();
+            new SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE)
+                    .setTitleText("Errore")
+                    .setContentText(error)
+                    .show();
+        });
     }
 
     public void showSuccess(String success) {
-        runOnUiThread(() ->
-                new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
-                        .setTitleText("Successo")
-                        .setContentText(success)
-                        .show());
+        runOnUiThread(() ->{
+            dismissLoading();
+            new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
+                    .setTitleText("Successo")
+                    .setContentText(success)
+                    .show();
+        });
+
     }
 
+    public void showLoading(){
+        runOnUiThread(() -> {
+            pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+            pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+            pDialog.setTitleText("");
+            pDialog.setCancelable(false);
+            pDialog.show();
+        });
+    }
+
+    public void dismissLoading(){
+        if(pDialog!=null){
+            pDialog.dismiss();
+            pDialog = null;
+        }
+    }
 
 }

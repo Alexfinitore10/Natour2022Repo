@@ -37,6 +37,7 @@ public class SignUpPresenter {
                         result -> {
                             Log.i(TAG, "Result: " + result.toString());
                             insertUser(username,email);
+                            signUpActivity.dismissLoading();
                             signUpActivity.ConfirmCodeDialog(username);
                         },
                         error -> {
@@ -56,11 +57,18 @@ public class SignUpPresenter {
                 .subscribe(
                         result -> {
                             Log.i(TAG, result.isSignUpComplete() ? "Confirm signUp succeeded" : "Confirm sign up not complete");
+                            signUpActivity.showSuccess("Account registrato con successo");
                             signUpActivity.startActivity(new Intent(signUpActivity, LogInActivity.class));
                         },
                         error -> {
                             Log.e(TAG, error.toString());
-                            signUpActivity.showError("Hai sbagliato ad inserire i campi");
+                            if (error.getCause().toString().contains("AliasExistsException")) {
+                                signUpActivity.showError("Email già usata");
+                            }else if(error.getCause().toString().contains("CodeExpiredException")){
+                                signUpActivity.showError("Il codice inserito non è valido");
+                            } else {
+                                signUpActivity.showError("Hai sbagliato ad inserire i campi");
+                            }
                         }
                 );
     }

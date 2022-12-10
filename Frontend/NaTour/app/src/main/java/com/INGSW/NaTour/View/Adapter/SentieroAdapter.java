@@ -61,6 +61,8 @@ public class SentieroAdapter extends RecyclerView.Adapter<SentieroAdapter.Itiner
                 txtDifficultCard.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_facile, 0, 0, 0);
             }else if(sentiero.getDifficolta()==2){
                 txtDifficultCard.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_medio, 0, 0, 0);
+            }else if(sentiero.getDifficolta()==3){
+                txtDifficultCard.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_difficile, 0, 0, 0);
             }
 
 

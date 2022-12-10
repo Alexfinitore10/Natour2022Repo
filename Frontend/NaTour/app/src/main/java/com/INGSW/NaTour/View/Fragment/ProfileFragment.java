@@ -129,6 +129,7 @@ public class ProfileFragment extends Fragment {
     private void safeLogOut(){
         startActivity(new Intent(getActivity(), MainActivity.class));
         getActivity().finish();
+        pDialog.dismiss();
     }
 
 
