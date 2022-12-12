@@ -1,3 +1,7 @@
+/*
+    INGSW2122_N_34 FRANCESCO CICCARELLI N86003285, ALEX CIACCIARELLA N86003179
+*/
+
 package com.INGSW.NaTour.Retrofit.Request;
 
 import android.util.Log;

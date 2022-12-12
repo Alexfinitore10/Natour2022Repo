@@ -1,3 +1,7 @@
+/*
+    INGSW2122_N_34 FRANCESCO CICCARELLI N86003285, ALEX CIACCIARELLA N86003179
+*/
+
 package com.INGSW.NaTour.Extra;
 
 import com.INGSW.NaTour.Model.MapPoint;
@@ -31,13 +35,12 @@ public class GpxManager {
         List<MapPoint> points = new ArrayList<>();
 
         if (gpx == null) {
-            // error parsing track
+            return null;
         } else {
 
             List<Route> routeList;
             List<TrackPoint> trackList;
             List<WayPoint> waypointList;
-
 
             if (gpx.getRoutes() != null && gpx.getRoutes().size() != 0) {
                 routeList = gpx.getRoutes();

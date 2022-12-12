@@ -1,3 +1,7 @@
+/*
+    INGSW2122_N_34 FRANCESCO CICCARELLI N86003285, ALEX CIACCIARELLA N86003179
+*/
+
 package com.INGSW.NaTour.Presenter;
 
 import android.content.Intent;
@@ -81,7 +85,7 @@ public class LoginPresenter {
                                 Log.d(TAG, "Non è un admin");
                             }
                         },
-                        error -> Log.e("AuthDemo", "Failed to fetch attributes.", error)
+                        error -> Log.e(TAG, "Failed to fetch attributes.", error)
                 );
     }
 
@@ -92,11 +96,11 @@ public class LoginPresenter {
             .subscribe(
                 result -> {
                     fetchUserAttributes();
-                    Log.i("AuthQuickstart", result.toString());
+                    Log.i(TAG, result.toString());
                     Constants.LOGIN = 1; //Login con Provider
                     HomepageCall();
                 },
-                error -> Log.e("AuthQuickstart", error.toString())
+                error -> Log.e(TAG, error.toString())
             );
     }
 
@@ -107,11 +111,11 @@ public class LoginPresenter {
             .subscribe(
                 result -> {
                     fetchUserAttributes();
-                    Log.i("AuthQuickstart", result.toString());
+                    Log.i(TAG, result.toString());
                     Constants.LOGIN = 1; //Login con Provider
                     HomepageCall();
                 },
-                error -> Log.e("AuthQuickstart", error.toString())
+                error -> Log.e(TAG, error.toString())
             );
     }
 
@@ -165,7 +169,7 @@ public class LoginPresenter {
                             Log.i(TAG+"AuthDemo username", username);
                             insertUser(username,email);
                         },
-                        error -> Log.e("AuthDemo", "Failed to fetch attributes.", error)
+                        error -> Log.e(TAG, "Failed to fetch attributes.", error)
                 );
     }
 

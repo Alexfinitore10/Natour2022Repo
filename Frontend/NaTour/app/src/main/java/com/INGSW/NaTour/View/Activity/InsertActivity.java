@@ -1,3 +1,7 @@
+/*
+    INGSW2122_N_34 FRANCESCO CICCARELLI N86003285, ALEX CIACCIARELLA N86003179
+*/
+
 package com.INGSW.NaTour.View.Activity;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -44,7 +48,7 @@ public class InsertActivity extends AppCompatActivity {
     private ExtendedFloatingActionButton fabNext, fabCancel;
     private SearchableSpinner searchableSpinner;
     private TextInputEditText editTimePicker, editName, editDescription;
-    private Long difficolta, hour, minute;
+    private Long hour, minute;
     private SweetAlertDialog pDialog;
     
     @SuppressLint("MissingInflatedId")

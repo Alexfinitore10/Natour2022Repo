@@ -1,3 +1,7 @@
+/*
+    INGSW2122_N_34 FRANCESCO CICCARELLI N86003285, ALEX CIACCIARELLA N86003179
+*/
+
 package com.INGSW.NaTour.Extra;
 
 import android.util.Log;
@@ -26,7 +30,7 @@ public class TransferDataIntent {
     }
 
     public static void setTransferDataIntent(TransferDataIntent transferDataIntent) {
-        Log.d(TAG, "salvataggio data");
+        Log.d(TAG, "Salvataggio data");
         TransferDataIntent.transferDataIntent = transferDataIntent;
     }
 

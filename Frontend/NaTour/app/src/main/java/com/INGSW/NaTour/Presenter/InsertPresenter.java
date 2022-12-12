@@ -1,3 +1,7 @@
+/*
+    INGSW2122_N_34 FRANCESCO CICCARELLI N86003285, ALEX CIACCIARELLA N86003179
+*/
+
 package com.INGSW.NaTour.Presenter;
 
 import android.util.Log;
@@ -23,7 +27,6 @@ public class InsertPresenter {
 
     private SentieroRequest sentieroRequest;
     private InsertActivity insertActivity;
-    //private OSMapActivity mapActivity;
     private List<MapPoint> points;
     private SentieriDTO sentiero;
 
@@ -53,10 +56,16 @@ public class InsertPresenter {
 
     public void gpxMap(InputStream gpxSteam){
         points = GpxManager.getTrack(gpxSteam);
-        Log.d(TAG, "Gpx Track :" + points.toString());
-        sentiero.setTracciato(points);
-        Log.d(TAG, sentiero.toString());
-        insertSentiero();
+        if(points != null){
+            Log.d(TAG, "Gpx Track :" + points.toString());
+            sentiero.setTracciato(points);
+            Log.d(TAG, sentiero.toString());
+            insertSentiero();
+        }else{
+            Log.e(TAG, "Errore nel parsing del gpx");
+            insertActivity.showError("Errore nel parsing del GPX, prova con un altro file");
+        }
+
     }
 
     public void trackFromMap(List<GeoPoint> actualPoints){

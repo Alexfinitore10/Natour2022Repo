@@ -1,3 +1,7 @@
+/*
+    INGSW2122_N_34 FRANCESCO CICCARELLI N86003285, ALEX CIACCIARELLA N86003179
+*/
+
 package com.INGSW.NaTour.Presenter;
 
 import android.graphics.Color;
@@ -82,7 +86,7 @@ public class SentieroPresenter {
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(
                             result -> {
-                                Log.i("MyAmplifyApp", "Successfully generated: " + result.getUrl());
+                                Log.i(TAG, "Successfully generated: " + result.getUrl());
                                 foto.setUrl(result.getUrl().toString());
                                 sentieroFotoFragment.getFotos().add(foto);
                                 sentieroFotoFragment.fotoAdapter.notifyDataSetChanged();
@@ -105,7 +109,6 @@ public class SentieroPresenter {
             @Override
             public void onSuccessList(List<MapPoint> tracciato) {
                 Log.d(TAG, "Ricevuto tracciato: ");
-                //Log.d(TAG, "Ricevuto tracciato: " + tracciato.toString());
                 sentiero.setTracciato(tracciato);
             }
 
@@ -168,9 +171,9 @@ public class SentieroPresenter {
                             }
                     );
         }  catch (FileNotFoundException error) {
-            Log.e("MyAmplifyApp", "Could not find file to open for input stream.", error);
+            Log.e(TAG, "Could not find file to open for input stream.", error);
         } catch (Exception e){
-            Log.e("MyAmplifyApp", e.toString());
+            Log.e(TAG, e.toString());
         }
     }
 

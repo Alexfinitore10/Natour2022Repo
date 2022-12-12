@@ -1,3 +1,7 @@
+/*
+    INGSW2122_N_34 FRANCESCO CICCARELLI N86003285, ALEX CIACCIARELLA N86003179
+*/
+
 package com.INGSW.NaTour.Retrofit.Request;
 
 
@@ -180,7 +184,7 @@ public class SentieroRequest {
                     .subscribe(new SingleObserver<Response<Void>>() {
                         @Override
                         public void onSubscribe(@NonNull Disposable d) {
-                            //TODO: Fare un logo
+
                         }
 
                         @Override

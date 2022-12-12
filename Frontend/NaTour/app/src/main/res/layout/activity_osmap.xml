@@ -38,8 +38,8 @@
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:backgroundTint="#59FF00"
-        app:srcCompat="@drawable/next" />
+        app:backgroundTint="#83FF41"
+        app:srcCompat="@drawable/ic_ok" />
 
     <org.osmdroid.views.MapView
         android:id="@+id/mapview"

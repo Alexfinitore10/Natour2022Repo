@@ -1,3 +1,7 @@
+/*
+    INGSW2122_N_34 FRANCESCO CICCARELLI N86003285, ALEX CIACCIARELLA N86003179
+*/
+
 package com.INGSW.NaTour.View.Activity;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -129,6 +133,13 @@ public class SentieroActivity extends AppCompatActivity {
         });
     }
 
+    public void showError(String error) {
+        runOnUiThread(() ->
+                new SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("Errore")
+                        .setContentText(error)
+                        .show());
+    }
 
     private void goToMap() {
         if(sentiero.getTracciato() != null){
@@ -139,7 +150,7 @@ public class SentieroActivity extends AppCompatActivity {
             startActivity(i);
             dialog.dismiss();
         }else {
-            //TODO: Gestire Errore con Alert
+            showError("Errore del tracciato");
             Log.e(TAG, "Tracciato non presente, impossibile visualizzarlo");
         }
     }

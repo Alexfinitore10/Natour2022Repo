@@ -1,3 +1,7 @@
+/*
+    INGSW2122_N_34 FRANCESCO CICCARELLI N86003285, ALEX CIACCIARELLA N86003179
+*/
+
 package com.INGSW.NaTour.Presenter;
 
 import android.util.Log;
@@ -23,25 +27,23 @@ public class EditPresenter {
 
     public boolean isEqual(Sentiero sentiero, SentieriDTO sentieroDTO){
 
-        boolean equal = true;
-
         if(!sentiero.getNome().equals(sentieroDTO.getNome()))
-            return equal = false;
+            return false;
 
         if(!sentiero.getDescrizione().equals(sentieroDTO.getDescrizione()))
-            return equal = false;
+            return false;
 
         if(!sentiero.getLocalità().equals(sentieroDTO.getLocalità()))
-            return equal = false;
+            return false;
 
         if(! (sentiero.getDifficolta() == sentieroDTO.getDifficolta()))
-            return equal = false;
+            return false;
 
         if(! (sentiero.getDurata() == sentieroDTO.getDurata()))
-            return equal = false;
+            return false;
 
         if(! (sentiero.isDisabile() == sentieroDTO.isDisabile()))
-            return equal = false;
+            return false;
 
         return true;
     }

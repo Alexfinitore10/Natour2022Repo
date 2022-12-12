@@ -1,6 +1,8 @@
-package com.INGSW.NaTour.Presenter;
+/*
+    INGSW2122_N_34 FRANCESCO CICCARELLI N86003285, ALEX CIACCIARELLA N86003179
+*/
 
-import static com.amazonaws.mobile.auth.core.internal.util.ThreadUtils.runOnUiThread;
+package com.INGSW.NaTour.Presenter;
 
 import android.util.Log;
 
@@ -11,7 +13,6 @@ import com.INGSW.NaTour.View.Fragment.HomepageFragment;
 
 import java.util.List;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class HomepagePresenter {
 
@@ -121,7 +122,7 @@ public class HomepagePresenter {
 
             @Override
             public void onFailure(Throwable throwable) {
-
+                Log.e(TAG, "Errore nel cancellare il percorso" + throwable.toString());
             }
         });
     }

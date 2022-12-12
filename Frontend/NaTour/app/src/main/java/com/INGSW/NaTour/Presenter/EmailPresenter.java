@@ -1,3 +1,7 @@
+/*
+    INGSW2122_N_34 FRANCESCO CICCARELLI N86003285, ALEX CIACCIARELLA N86003179
+*/
+
 package com.INGSW.NaTour.Presenter;
 
 import android.util.Log;
@@ -50,7 +54,7 @@ public class EmailPresenter {
 
             @Override
             public void onFailure(Throwable throwable) {
-
+                Log.e(TAG, "Errore nell'invio dell'email" + throwable.toString());
             }
         });
 

@@ -1,3 +1,7 @@
+/*
+    INGSW2122_N_34 FRANCESCO CICCARELLI N86003285, ALEX CIACCIARELLA N86003179
+*/
+
 package com.INGSW.NaTour.Model;
 
 import java.io.Serializable;
@@ -138,7 +142,7 @@ public class Sentiero implements Serializable {
                 ", disabile=" + disabile +
                 ", località='" + località + '\'' +
                 ", immagine='" + immagine + '\'' +
-                ", utenteid=" + utente +
+                ", utente=" + utente +
                 '}';
     }
 }

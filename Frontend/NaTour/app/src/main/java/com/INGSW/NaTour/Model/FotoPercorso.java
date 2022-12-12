@@ -1,3 +1,7 @@
+/*
+    INGSW2122_N_34 FRANCESCO CICCARELLI N86003285, ALEX CIACCIARELLA N86003179
+*/
+
 package com.INGSW.NaTour.Model;
 
 public class FotoPercorso {
@@ -47,7 +51,7 @@ public class FotoPercorso {
         return "FotoPercorso{" +
                 "id=" + id +
                 ", url='" + url + '\'' +
-                ", sentieriProprietario=" + sentiero +
+                ", sentiero=" + sentiero +
                 '}';
     }
 }

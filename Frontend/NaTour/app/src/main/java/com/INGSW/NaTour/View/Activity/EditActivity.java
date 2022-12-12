@@ -1,3 +1,7 @@
+/*
+    INGSW2122_N_34 FRANCESCO CICCARELLI N86003285, ALEX CIACCIARELLA N86003179
+*/
+
 package com.INGSW.NaTour.View.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,7 +43,7 @@ public class EditActivity extends AppCompatActivity {
     private TextInputEditText editTimePicker, editName, editDescription;
     private Long hour, minute;
     private Sentiero sentiero;
-    String località = null;
+    private String località = null;
 
 
 
