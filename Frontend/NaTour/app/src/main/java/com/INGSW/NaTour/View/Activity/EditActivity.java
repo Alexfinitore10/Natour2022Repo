@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
@@ -44,6 +45,7 @@ public class EditActivity extends AppCompatActivity {
     private Long hour, minute;
     private Sentiero sentiero;
     private String località = null;
+    private SweetAlertDialog pDialog;
 
 
 
@@ -253,5 +255,33 @@ public class EditActivity extends AppCompatActivity {
         setResult(80, i);
         Log.d(TAG, "Sto per chiudere l'activity");
         finish();
+    }
+
+    public void showSuccess(String success) {
+        runOnUiThread(() ->{
+            dismissLoading();
+            new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
+                    .setTitleText("Successo")
+                    .setContentText(success)
+                    .show();
+        });
+
+    }
+
+    public void showLoading(){
+        runOnUiThread(() -> {
+            pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+            pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+            pDialog.setTitleText("");
+            pDialog.setCancelable(false);
+            pDialog.show();
+        });
+    }
+
+    public void dismissLoading(){
+        if(pDialog!=null){
+            pDialog.dismiss();
+            pDialog = null;
+        }
     }
 }

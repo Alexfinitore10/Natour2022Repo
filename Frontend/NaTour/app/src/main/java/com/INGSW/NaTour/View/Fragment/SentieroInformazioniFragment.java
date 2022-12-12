@@ -229,6 +229,10 @@ public class SentieroInformazioniFragment extends Fragment {
     }
 
     public void showError(String text) {
+        if(dialog != null){
+            dialog.dismissWithAnimation();
+            dialog = null;
+        }
         runOnUiThread(() ->
                 new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
                         .setTitleText("Errore")
@@ -250,11 +254,11 @@ public class SentieroInformazioniFragment extends Fragment {
             if(dialog != null){
                 dialog.dismissWithAnimation();
                 dialog = null;
+            }
                 new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
                         .setTitleText("Successo")
                         .setContentText(success)
                         .show();
-            }
         });
     }
 }

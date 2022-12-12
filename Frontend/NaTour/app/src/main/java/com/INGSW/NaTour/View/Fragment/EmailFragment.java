@@ -92,7 +92,8 @@ public class EmailFragment extends Fragment {
 
     public void showSuccess(String success) {
         Log.d(TAG, "Success popup");
-        progressDialog.dismissWithAnimation();
+        if(progressDialog != null)
+            progressDialog.dismissWithAnimation();
         runOnUiThread(() ->
                 new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
                         .setTitleText("Success")

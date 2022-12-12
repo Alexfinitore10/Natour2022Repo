@@ -35,6 +35,7 @@ public class LogInActivity extends AppCompatActivity {
     ImageView buttonFacebook;
     TextInputEditText editTextUsername;
     TextInputEditText editTextPassword;
+    SweetAlertDialog pDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +83,10 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     public void showError(String error) {
+        if(pDialog!=null){
+            pDialog.dismiss();
+            pDialog = null;
+        }
         runOnUiThread(() ->
             new SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE)
                     .setTitleText("Errore")
@@ -90,7 +95,7 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     public SweetAlertDialog showLoading(){
-        SweetAlertDialog pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+        pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
         pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
         pDialog.setTitleText("");
         pDialog.setCancelable(false);

@@ -50,6 +50,7 @@ public class EditPresenter {
 
 
     public void updateSentiero(Long id, SentieriDTO sentieroDTO) {
+        editActivity.showLoading();
         SentieroRequest sentieroRequest = new SentieroRequest();
         sentieroRequest.updateSentiero(id, sentieroDTO, new SentieroSingleCallback() {
             @Override
@@ -58,6 +59,7 @@ public class EditPresenter {
             @Override
             public void onSuccess(Sentiero sentiero) {
                 Log.d(TAG, "Aggiornato con successo" + sentiero.toString());
+                editActivity.showSuccess("Modifica fatto con successo");
                 editActivity.success(sentiero);
             }
 

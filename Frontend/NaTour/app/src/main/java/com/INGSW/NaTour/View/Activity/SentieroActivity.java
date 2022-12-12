@@ -134,6 +134,10 @@ public class SentieroActivity extends AppCompatActivity {
     }
 
     public void showError(String error) {
+        if(dialog!=null){
+            dialog.dismiss();
+            dialog = null;
+        }
         runOnUiThread(() ->
                 new SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE)
                         .setTitleText("Errore")
