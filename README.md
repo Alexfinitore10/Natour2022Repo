@@ -1,2 +1,2 @@
-# Natour2022Repo
-Hello World!
+# Natour
+![alt text](./slides/images/NaTourLogo.svg)
