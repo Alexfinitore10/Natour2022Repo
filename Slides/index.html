@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title></title>
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/solarized.css" id="theme" />
+    <link rel="stylesheet" href="plugin/highlight/zenburn.css" />
+	<link rel="stylesheet" href="css/layout.css" />
+	<link rel="stylesheet" href="plugin/customcontrols/style.css">
+
+	<link rel="stylesheet" href="plugin/reveal-pointer/pointer.css" />
+
+
+    <script defer src="dist/fontawesome/all.min.js"></script>
+
+	<script type="text/javascript">
+		var forgetPop = true;
+		function onPopState(event) {
+			if(forgetPop){
+				forgetPop = false;
+			} else {
+				parent.postMessage(event.target.location.href, "app://obsidian.md");
+			}
+        }
+		window.onpopstate = onPopState;
+		window.onmessage = event => {
+			if(event.data == "reload"){
+				window.document.location.reload();
+			}
+			forgetPop = true;
+		}
+
+		function fitElements(){
+			const itemsToFit = document.getElementsByClassName('fitText');
+			for (const item in itemsToFit) {
+				if (Object.hasOwnProperty.call(itemsToFit, item)) {
+					var element = itemsToFit[item];
+					fitElement(element,1, 1000);
+					element.classList.remove('fitText');
+				}
+			}
+		}
+
+		function fitElement(element, start, end){
+
+			let size = (end + start) / 2;
+			element.style.fontSize = `${size}px`;
+
+			if(Math.abs(start - end) < 1){
+				while(element.scrollHeight > element.offsetHeight){
+					size--;
+					element.style.fontSize = `${size}px`;
+				}
+				return;
+			}
+
+			if(element.scrollHeight > element.offsetHeight){
+				fitElement(element, start, size);
+			} else {
+				fitElement(element, size, end);
+			}		
+		}
+
+
+		document.onreadystatechange = () => {
+			fitElements();
+			if (document.readyState === 'complete') {
+				if (window.location.href.indexOf("?export") != -1){
+					parent.postMessage(event.target.location.href, "app://obsidian.md");
+				}
+				if (window.location.href.indexOf("print-pdf") != -1){
+					let stateCheck = setInterval(() => {
+						clearInterval(stateCheck);
+						window.print();
+					}, 250);
+				}
+			}
+	};
+
+
+        </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<img src="images/Risorsa2.svg" alt="" style="width: 850px; object-fit: fill">
+
+### Presentazione di Ingegneria del Software Anno 2021/2022
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<style>.reveal { font-size: 2em; }</style>
+## L’idea di NaTour
+- NaTour è un software creato per unire appassionati di escursioni in tutto il mondo attraverso un click.<!-- .element: class="fragment" data-frament-index="1" -->
+- Il software è stato ideato principalmente per dare una spinta a tutte le persone, appassionate e non, nell'attività del trekking. <!-- .element: class="fragment" data-frament-index="2" -->
+- Idea che deriva dal periodo... L'applicazione vuole porporsi di portare le persone fuori da casa propria e magari scoprire una nuova passione. <!-- .element: class="fragment" data-frament-index="3" -->
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<style>.reveal { font-size: 2em; }</style>
+## La nostra filosofia
+- Alla base della nostra idea c'è la semplicità d'uso, così da garantire le stesse possibilità tra utenti meno esperti e più esperti. <!-- .element: class="fragment" data-frament-index="1" -->
+- La grafica e l'interfaccia minimale per consentire una chiara lettura e comprensione di tutto quello che sta succedendo sull'app. <!-- .element: class="fragment" data-frament-index="2" -->
+</div></script></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<style>.reveal { font-size: 2em; }</style>
+## Alcuni Dati 
+Secondo l'Isnart nel 2020, la popolazione italiana ha avuto un boom di turismo di prossimità, nel proprio paese, e sopratutto un turismo naturale... <br>
+<img src="images/DatiNatura.png" alt="" style="width: 700px; object-fit: fill" class="fragment" data-frament-index="1">
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Dati Anagrafici
+<img src="images/DatiOrizonjatalNoBackogun.png" alt="" style="object-fit: scale-down">
+</div></script></section></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<style>.reveal { font-size: 2em; }</style>
+## Le funzionalità di NaTour
+- Autenticazione via email oppure facilitata (Google e Facebook) <!-- .element: class="fragment" data-frament-index="1" -->
+- Creare e visualizzare percorsi <!-- .element: class="fragment" data-frament-index="2" -->
+- Caricare foto del percorso <!-- .element: class="fragment" data-frament-index="3" -->
+- Esprimere un opinione sul percorso, indicando tempo di percorrenza e difficoltà <!-- .element: class="fragment" data-frament-index="4" -->
+- Ricerca dei percorsi: <!-- .element: class="fragment" data-frament-index="5" -->
+	- Località
+	- Difficoltà 
+	- Durata 
+	- Accessibilità ai disabili 
+- Amministrare percorsi e inviare mail promozionali (solo admin)<!-- .element: class="fragment" data-frament-index="6" -->
+- Accedere senza Account <!-- .element: class="fragment" data-frament-index="7" -->
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Backend
+Per il backend ci siamo affidati a uno dei framework più famosi in ambito Java per svillupare il nostro servizio REST API:
+
+<img src="images/Spring_Framework_Logo_2018.svg" alt="" style="width: 500px; object-fit: fill" class="fragment" data-frament-index="1">
+
+- Semplice da usare<!-- .element: class="fragment" data-frament-index="2" -->
+- Veloce e Portabile <!-- .element: class="fragment" data-frament-index="3" -->
+- Scalabile <!-- .element: class="fragment" data-frament-index="4" -->
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## La nostra architettura
+<img src="images/Rest.png" alt="" style="object-fit: scale-down">
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Client 
+<img src="images/aaaa.png" alt="" style="width: 400px; object-fit: fill" class="fragment" data-frament-index="1">
+
+Consiste in un app Android sviluppata in Java <br> <!-- .element: class="fragment" data-frament-index="2" -->
+
+Ci siamo avvalsi dei seguenti servizi e risorse: <!-- .element: class="fragment" data-frament-index="3" -->
+<div class="type speed flex-even" style="display: flex; flex-direction: row; align-items: center; justify-content: center" align="center">
+
+<img src="images/osma.png" alt="" style="width: 150px; object-fit: fill" class="fragment" data-frament-index="4">
+
+
+<img src="images/material2.png" alt="" style="width: 150px; height: 150px; object-fit: fill" class="fragment" data-frament-index="5">
+
+
+<img src="images/Amplify.png" alt="" style="width: 150px; height: 150px; object-fit: fill" class="fragment" data-frament-index="6">
+
+</div>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Servizi Cloud
+Per la gestione del cloud ci siamo affidati a uno dei colossi di questo abito:
+
+<img src="images/Amazon_Web_Services_Logo.svg" alt="" style="width: 150px; height: 150px; object-fit: fill">
+
+In particolare abbiamo usato i seguenti servizi:
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<style>.reveal { font-size: 2em; }</style>
+## Amazon Cognito 
+<img src="images/cognito.png" alt="" style="width: 150px; height: 150px; object-fit: fill">
+
+Ci aiuta nell’autenticazione degli utenti
+grazie all’uso di una sua interna pool di utenti, esso ci permette di tenere traccia di qualsiasi utente all’interno del nostro software.
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<style>.reveal { font-size: 2em; }</style>
+## Amazon EC2
+<img src="images/Amazon-EC2@4x-e1593195270371.png" alt="" style="width: 150px; height: 150px; object-fit: fill">
+
+Ci hostrare il server (SpringBoot) su Cloud. <br>Il servizio offre la possibilità di scalare in base alle esigenze su una macchina più performante per gestire al meglio tutte le richieste.
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<style>.reveal { font-size: 2em; }</style>
+## Amazon RDS
+<img src="images/Arch_Amazon-Aurora_64@5x.png" alt="" style="width: 150px; height: 150px; object-fit: fill">
+
+Database relazionale che ci permette, attraverso SpringBoot, di tenere traccia di tutte le modifiche e aggiunte degli utenti nell'applicazione.<br><br><br>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<style>.reveal { font-size: 2em; }</style>
+## Amazon S3
+<img src="images/amazon-s3-simple-storage-service-logo-9A3F37976E-seeklogo.com.png" alt="" style="width: 150px; height: 150px; object-fit: fill">
+
+Ci permette di immagazzinare le foto che gli utenti caricano dall'applicazione, è comodamente diviso in "bucket", cioè secchi, per poter separare i diversi tipi di file.<br><br>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Conclusione
+<img src="images/Risorsa2.svg" alt="" style="width: 650px; object-fit: fill">
+
+### Sviluppata Da:
+### Alex Ciacciarella &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; Francesco Ciccarelli
+##### N86003179 &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj;&zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; &zwnj; N86003285
+</div></script></section></div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script src="plugin/zoom/zoom.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/math/math.js"></script>
+	<script src="plugin/mermaid/mermaid.js"></script>
+	<script src="plugin/chart/chart.min.js"></script>
+	<script src="plugin/chart/plugin.js"></script>
+	<script src="plugin/menu/menu.js"></script>
+	<script src="plugin/customcontrols/plugin.js"></script>
+	<script src="plugin/reveal-pointer/pointer.js"></script>
+
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+	  function isLight(color) {
+		let hex = color.replace('#', '');
+
+		// convert #fff => #ffffff
+		if(hex.length == 3){
+			hex = `${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`;
+		}
+
+		const c_r = parseInt(hex.substr(0, 2), 16);
+		const c_g = parseInt(hex.substr(2, 2), 16);
+		const c_b = parseInt(hex.substr(4, 2), 16);
+		const brightness = ((c_r * 299) + (c_g * 587) + (c_b * 114)) / 1000;
+		return brightness > 155;
+	}
+
+	var bgColor = getComputedStyle(document.documentElement).getPropertyValue('--r-background-color').trim();
+	var isLight = isLight(bgColor);
+
+	if(isLight){
+		document.body.classList.add('has-light-background');
+	} else {
+		document.body.classList.add('has-dark-background');
+	}
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath.MathJax3,
+		  RevealMermaid,
+		  RevealChart,
+		  RevealCustomControls,
+		  RevealMenu,
+	      RevealPointer,
+        ],
+
+
+    	allottedTime: 120 * 1000,
+
+		mathjax3: {
+			mathjax: 'plugin/math/mathjax/tex-mml-chtml.js',
+		},
+		markdown: {
+		  gfm: true,
+		  mangle: true,
+		  pedantic: false,
+		  smartLists: false,
+		  smartypants: false,
+		},
+
+		mermaid: {
+			theme: isLight ? 'default' : 'dark',
+		},
+
+		customcontrols: {
+			controls: [
+			]
+		},
+		menu: {
+			loadIcons: false
+		}
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"width":960,"height":700,"margin":0.04,"controls":true,"progress":true,"slideNumber":true,"transition":"slide","transitionSpeed":"default"}, queryOptions);
+    </script>
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+
+  <!-- created with Advanced Slides -->
+</html>
