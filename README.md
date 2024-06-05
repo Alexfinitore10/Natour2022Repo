@@ -4,6 +4,9 @@
 Questo software è stato creato per il corso INGSW21-22, che prevede nel documentare l'intero ciclo di vita di un sistema Client-Server con l'utilizzo di servizi Public Cloud.<br>
 Si può leggere tale documentazione qui: [Link](./Slides/INGSW2122_N_34.pdf)
 
+## Presentazione
+Questa è la presentazione che abbiamo mostrato durata la discussione del progetto: [Link](https://alexfinitore10.github.io/Natour2022Repo/)
+
 # Come Funziona
 Il sistema è composto da un client Android scritto in Java e un server SpringBoot anch'esso in Java, inoltre sono stati usati AWS Cognito per l'autentificazione e AWS S3 per lo storage delle foto.
 
@@ -67,5 +70,4 @@ Per fare funzionare il login e lo storage di foto è necessario configuare Ampli
 #### Cognito-S3
 Configurare in modo standard entrambi i servizi
 
-## Presentazione
-Questa è la presentazione che abbiamo mostrato durata la discussione del progetto: [Link]()
+
